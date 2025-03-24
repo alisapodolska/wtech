@@ -32,7 +32,81 @@
     </div>
 </nav>
 
+<div class="product-container">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4 price" style="margin-top: 70px">
+                <h3 class="product-name">Wild Rose</h3>
+                <p class="product-volume">Eau de Parfum / 50ml</p>
+                <h4 class="product-price">€130.00</h4>
+                <label for="quantity" class="quantity-label">Quantity</label>
+                <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1">
+                <button class="btn add-to-bag-btn mt-3">ADD TO BAG</button>
+            </div>
 
+            <div class="col-md-4 img ">
+                <img src="https://burrenperfumery.com/cdn/shop/products/WildRoseBox_1024x.png?v=1600941764" class="pic3"/>
+            </div>
+
+            <div class="col-md-4 description-box">
+                <div class="tab-menu mb-2">
+                    <a href="#" class="tab-link active" data-tab="description">Description</a>
+                    <a href="#" class="tab-link inactive" data-tab="ingredients">Ingredients</a>
+                </div>
+
+                <p class="tab-content description active">
+                    We imagine daybreak in the Burren: the fresh delicacy of the Burnet Rose is slowly warmed by the rising sun,
+                    revealing a soft rose petal heart grounded in fragrant Honey and Sandalwood notes.
+                </p>
+                <p class="tab-content description active">
+                    Wild Rose opens at dawn with the sparkling notes of Pink Grapefruit and Bergamot, heralding the precious Grasse Rose
+                    Centifolia - natural, delicate, velvety. As low sunlight warms the rose, the soft honey notes of Rosa Damascena blend
+                    with the sensuous warm notes of Sandalwood, smooth Benzoin, Beeswax and a hint of Gaicwood is brushed by the green
+                    freshness of Angelica. The fragile, rare touch of natural Ambrette Seed brings richness to the perfume but remains
+                    discreet and delicate.
+                </p>
+
+                <p class="tab-content ingredients" style="display: none;">
+                    Alcohol Denat.,Parfum, Aqua, Benzyl Alcohol, Benzyl Benzoate, Citral, Citronellol,
+                    Eugenol, Farnesol, Geraniol, Hexyl Cinnamal, Isoeugenol, Linalool, Limonene. Allergens listed in italics.
+                </p>
+                <p><strong>COSMOS Natural Certified:</strong> 100% natural ingredients, 77% organic of total.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="scent-family-section">
+    <div class="scent-description">
+        <h2>More from
+            the Scent Family</h2>
+        <p> Lost Garden </p>
+    </div>
+
+    <div class="scent-container">
+        <div class="product-card">
+            <img src="https://burrenperfumery.com/cdn/shop/products/WildRoseBox_1024x.png?v=1600941764" alt="Perfume">
+            <h4>Frond</h4>
+            <p>Eau de Parfum</p>
+            <span>€65.00 / 50ml</span>
+        </div>
+
+        <div class="product-card">
+            <img src="https://burrenperfumery.com/cdn/shop/products/WildRoseBox_1024x.png?v=1600941764" alt="Body Lotion">
+            <h4>Frond</h4>
+            <p>Body Lotion</p>
+            <span>€28.00 / 200ml</span>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="https://burrenperfumery.com/cdn/shop/products/WildRoseBox_1024x.png?v=1600941764" alt="Handmade Soap">
+            <h4>Frond</h4>
+            <p>Castile Soap</p>
+            <span>€20.00 / 200ml</span>
+        </div>
+    </div>
+</section>
 
 <footer>
     <div class="footer-container">
@@ -59,5 +133,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../javascript/tabs.js" defer></script>
 </body>
 </html>

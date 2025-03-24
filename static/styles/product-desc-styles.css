@@ -12,39 +12,191 @@ body {
     position: fixed;
 }
 
+.product-container {
+    background-image: url('../img/background_img1.png');
+    background-size: cover; /* Ensures it covers the whole width */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures full screen height */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    padding: 50px 10px; /* Responsive spacing */
+}
+
+.content {
+    padding: 50px;
+    margin: 50px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.col-md-4{
+    padding: 20px;
+}
+
+.product-name {
+    font-size: 32px; /* Larger heading */
+    font-weight: bold;
+}
+
+.product-volume {
+    font-size: 14px; /* Smaller text for volume */
+    color: #666; /* Soft gray for readability */
+}
+
+.product-price {
+    font-size: 24px; /* Ensure price is well seen */
+    font-weight: bold;
+    color: #333; /* Dark for visibility */
+}
+
+.quantity-label {
+    font-size: 14px; /* Smaller label text */
+    font-weight: 500;
+    color: #444;
+}
+
+.quantity-input {
+    width: 60px !important; /* Reduce width for better fit */
+    text-align: center;
+}
+
+.add-to-bag-btn {
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid black;
+    width: 70%;
+    padding: 8px 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-to-bag-btn:hover {
+    background-color: black !important;
+    color: white !important;
+}
+
+.description{
+    color: #666;
+}
+
+.ingredients{
+    color: #666;
+}
+
+.tab-menu {
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    gap: 20px;
+    margin-top: -20px;
+}
+.tab-menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.inactive {
+    color: #aaa;
+}
+
+.scent-family-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.scent-description {
+    flex: 1;
+    max-width: 25%;
+    margin-top: -250px;
+}
+
+/* Product container (three product columns) */
+.scent-container {
+    flex: 3;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Each product card */
+.product-card {
+    flex: 1;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 768px) {
+    .scent-family-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .scent-description {
+        max-width: 100%;
+    }
+
+    .scent-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 80%;
+    }
+}
 
 footer {
-    background-color: #F5F6F3; /* Light background */
-    text-align: center;
+    background-color: #F5F6F3;
     font-family: serif;
     margin-top: 100px;
+    padding: 20px 10px;
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centers logo */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centers it horizontally */
+    text-align: center;
 }
 
 .footer-logo h2 {
     font-size: 32px;
     font-family: 'Imperial Script', cursive;
     font-weight: normal;
-    text-align: center;
-    margin-left: 500px;
 }
 
 .footer-links {
     display: flex;
     gap: 40px;
-    margin-top: 10px;
+    justify-content: flex-end; /* Keeps links/text to the right */
+    text-align: left;
+    flex: 1;
 }
 
 .footer-column {
-    text-align: left;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .footer-column h3 {
@@ -76,4 +228,46 @@ footer {
     margin-top: 20px;
     font-size: 12px;
     color: #555;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo h2 {
+        font-size: 24px;
+    }
+
+    .footer-column h3 {
+        font-size: 14px;
+    }
+
+    .footer-column p {
+        font-size: 12px;
+    }
 }
