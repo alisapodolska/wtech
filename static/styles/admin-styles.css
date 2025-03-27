@@ -1,0 +1,229 @@
+body {
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background for better contrast */
+}
+
+.logo {
+    font-family: 'Imperial Script', cursive;
+    font-size: 50px;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    height: 75px;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Log out button */
+.logout-container {
+    position: absolute;
+    top: 90px; /* Below the navbar */
+    right: 20px;
+    z-index: 999;
+}
+
+.logout-btn {
+    padding: 8px 20px;
+    background-color: #ff4d4d; /* Red color for logout */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #e63939; /* Darker red on hover */
+}
+
+/* Admin Section */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 150px); /* Full height minus navbar and footer */
+    padding: 20px;
+    margin-top: 75px; /* To account for fixed navbar */
+}
+
+.admin-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.admin-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.admin-btn {
+    padding: 12px 25px;
+    background-color: #ff99cc; /* Pink color to match the theme */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.admin-btn:hover {
+    background-color: #ff80b3; /* Slightly darker pink on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+footer {
+    background-color: #F5F6F3;
+    font-family: serif;
+    margin-top: 50px;
+    padding: 20px 10px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.footer-logo h2 {
+    font-size: 32px;
+    font-family: 'Imperial Script', cursive;
+    font-weight: normal;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+    text-align: left;
+    flex: 1;
+}
+
+.footer-column {
+    max-width: 250px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    background-color: white;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #555;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .logout-container {
+        top: 80px;
+        right: 10px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-title {
+        font-size: 28px;
+    }
+
+    .admin-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .logout-btn {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+
+    .footer-logo h2 {
+        font-size: 24px;
+    }
+
+    .footer-column h3 {
+        font-size: 14px;
+    }
+
+    .footer-column p {
+        font-size: 12px;
+    }
+}
