@@ -1,0 +1,221 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.logo {
+    font-family: 'Imperial Script', cursive;
+    font-size: 50px;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+}
+
+.section1 {
+    background: #d3d3d3; /* Gray background */
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box {
+    width: 100%;
+    text-align: center;
+}
+
+.search-bar {
+    width: 80%;
+    max-width: 600px;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #ff99cc; /* Pink color */
+    color: white;
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: white;
+    opacity: 0.7;
+}
+
+.about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.container_pr {
+    height: 900px;
+}
+
+.product_big {
+    padding: 15px;
+    margin-right: 15px;
+    height: 650px;
+    width: 450px;
+    margin-bottom: 15px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 100px;
+}
+
+.product1 {
+    margin-left: 600px;
+    margin-top: -650px;
+    height: 300px;
+    width: 250px;
+}
+
+.details1 {
+    margin-left: 280px;
+    margin-top: -300px;
+}
+
+.pic {
+    height: 300px;
+    width: 250px;
+}
+
+.product2 {
+    margin-left: 850px;
+    margin-top: 120px;
+    height: 300px;
+    width: 250px;
+}
+
+.details2 {
+    margin-left: -240px;
+    margin-top: -300px;
+    width: 200px;
+    text-align: right;
+}
+
+.pic2 {
+    height: 300px;
+    width: 250px;
+}
+
+.products .price {
+    font-weight: bold;
+    text-align: center;
+}
+
+.products .btn-dark {
+    display: block;
+    width: 100px;
+    text-align: center;
+}
+
+.container_sf h2 {
+    margin-left: -320px;
+    margin-top: 30px;
+}
+
+.container_sf {
+    background: #F9E3D9;
+    height: 600px;
+    margin-left: 300px;
+}
+
+.list-group {
+    marker: none;
+}
+
+.scent-families li {
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+.scent-families ul {
+    list-style: none;
+    margin-top: -370px;
+    margin-left: 180px;
+}
+
+.pic3 {
+    height: 450px;
+    margin-left: -700px;
+    margin-top: 30px;
+}
+
+.pic4 {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 100px;
+}
+
+footer {
+    background-color: #F5F6F3;
+    text-align: center;
+    font-family: serif;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo h2 {
+    font-size: 32px;
+    font-family: 'Imperial Script', cursive;
+    font-weight: normal;
+    text-align: center;
+    margin-left: 500px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.footer-column {
+    text-align: left;
+    max-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    background-color: white;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #555;
+}
