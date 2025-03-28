@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Aroma UA - Admin Panel</title>
+    <title>The Aroma UA - My Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/admin-styles.css">
+    <link rel="stylesheet" href="../styles/myProfile-styles.css">
 </head>
 <body>
 
@@ -33,65 +33,67 @@
     </div>
 </nav>
 
-<!-- Admin Header -->
-<section class="admin-header py-3">
+<!-- Profile Header -->
+<section class="profile-header py-3">
     <div class="container d-flex justify-content-between align-items-center">
-        <h2 class="admin-title">Admin</h2>
-        <div class="admin-actions">
-            <button class="btn btn-outline-primary me-2">+ Add Product</button>
+        <h2 class="profile-title">My Profile</h2>
+        <div class="profile-actions">
             <button class="btn btn-outline-danger">Log Out</button>
         </div>
     </div>
 </section>
 
-<!-- Product List Section -->
-<section class="product-list py-5">
+<!-- Profile Info Section -->
+<section class="profile-info py-5">
     <div class="container">
-        <div class="product-items">
-            <!-- Product Item 1 -->
-            <div class="product-item d-flex align-items-center justify-content-between border-bottom py-3">
+        <div class="user-details text-center">
+            <h3 class="user-name">John Doe</h3>
+            <p class="user-email text-muted">johndoe@example.com</p>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-list mt-5">
+            <h4 class="orders-title">Your Orders</h4>
+            <!-- Order Item 1 -->
+            <div class="order-item d-flex align-items-center justify-content-between border-bottom py-3">
                 <div class="d-flex align-items-center">
-                    <img src="https://i.postimg.cc/t7pNQLDB/prod1.jpg" alt="Product 1" class="item-image">
-                    <div class="item-details ms-3">
-                        <p class="mb-0">
-                            WILD ROSE: 50ml</p>
-                        <p class="mb-0 text-muted">Stock: 10</p>
+                    <img src="https://i.postimg.cc/t7pNQLDB/prod1.jpg" alt="Wild Rose" class="item-image">
+                    <div class="order-details ms-3">
+                        <p class="mb-0">WILD ROSE: 50ml</p>
+                        <p class="mb-0 text-muted">Order #12345 - Delivered on March 15, 2025</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
                     <p class="price mb-0">€130.00</p>
-                    <button class="btn btn-sm btn-outline-warning ms-3">Update</button>
-                    <button class="btn btn-sm btn-outline-danger ms-2">Delete</button>
+                    <button class="btn btn-sm btn-outline-primary ms-3">View Details</button>
                 </div>
             </div>
-            <!-- Product Item 2 -->
-            <div class="product-item d-flex align-items-center justify-content-between border-bottom py-3">
+            <!-- Order Item 2 -->
+            <div class="order-item d-flex align-items-center justify-content-between border-bottom py-3">
                 <div class="d-flex align-items-center">
-                    <img src="https://i.postimg.cc/JHrNNktf/prod2.jpg" alt="Product 2" class="item-image">
-                    <div class="item-details ms-3">
+                    <img src="https://i.postimg.cc/JHrNNktf/prod2.jpg" alt="Neroli" class="item-image">
+                    <div class="order-details ms-3">
                         <p class="mb-0">NEROLI: 50ml</p>
-                        <p class="mb-0 text-muted">Stock: 5</p>
+                        <p class="mb-0 text-muted">Order #12346 - Shipped on March 20, 2025</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
                     <p class="price mb-0">€130.00</p>
-                    <button class="btn btn-sm btn-outline-warning ms-3">Update</button>
-                    <button class="btn btn-sm btn-outline-danger ms-2">Delete</button>
+                    <button class="btn btn-sm btn-outline-primary ms-3">View Details</button>
                 </div>
             </div>
-             <!-- Product Item 3 -->
-             <div class="product-item d-flex align-items-center justify-content-between border-bottom py-3">
+            <!-- Order Item 3 -->
+            <div class="order-item d-flex align-items-center justify-content-between border-bottom py-3">
                 <div class="d-flex align-items-center">
-                    <img src="https://i.postimg.cc/0rnd8cBP/prod3.jpg" alt="Product 3" class="item-image">
-                    <div class="item-details ms-3">
-                        <p class="mb-0">ILAUN: 50 ml</p>
-                        <p class="mb-0 text-muted">Stock: 14</p>
+                    <img src="https://i.postimg.cc/0rnd8cBP/prod3.jpg" alt="Ilaun" class="item-image">
+                    <div class="order-details ms-3">
+                        <p class="mb-0">ILAUN: 50ml</p>
+                        <p class="mb-0 text-muted">Order #12347 - Processing</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
                     <p class="price mb-0">€60.00</p>
-                    <button class="btn btn-sm btn-outline-warning ms-3">Update</button>
-                    <button class="btn btn-sm btn-outline-danger ms-2">Delete</button>
+                    <button class="btn btn-sm btn-outline-primary ms-3">View Details</button>
                 </div>
             </div>
         </div>
