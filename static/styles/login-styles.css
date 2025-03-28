@@ -11,8 +11,10 @@ body {
 
 .navbar {
     width: 100%;
+    background-color: white;
     position: fixed;
-    height: 75px;
+    top: 0;
+    z-index: 1000;
 }
 
 .login-container {

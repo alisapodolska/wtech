@@ -9,7 +9,10 @@ body {
 
 .navbar {
     width: 100%;
+    background-color: white;
     position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .product-container {
@@ -128,10 +131,81 @@ body {
     text-align: center;
 }
 
-.product-card img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+.product-item {
+    position: relative;
+    height: 300px; /* Fixed height to match desired image height */
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    background-color: white; /* Light background for the container */
+}
+
+.product-item .product-image {
+    width: 70%; /* Image takes 80% of the container width */
+    height: 300px; /* Fixed height, matches container height */
+    background-size: cover; /* Crop the image if it doesn't fit */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0; /* Align to the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+.product-item .product-overlay {
+    position: absolute;
+    bottom: 20px;
+    color: #333;
+}
+
+.product-item .product-name {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.product-item .product-subtitle {
+    font-size: 16px;
+    background-color: white;
+}
+
+.product-item .product-price {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.product-item .price {
+    display: none; /* Hide for sorting purposes */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .product-item {
+        height: 250px; /* Smaller height on mobile */
+    }
+
+    .product-item .product-image {
+        width: 160px; /* Smaller fixed width on mobile (80% of 200px) */
+        height: 250px; /* Matches container height on mobile */
+    }
+
+    .product-item .product-overlay {
+        left: calc(50% - 72px); /* Adjust for smaller image width (160px width, so 80px from center to left edge) */
+    }
+
+    .product-item .product-name {
+        font-size: 20px; /* Smaller font on mobile */
+    }
+
+    .product-item .product-subtitle {
+        font-size: 14px;
+    }
+
+    .product-item .product-price {
+        font-size: 16px;
+    }
 }
 
 /* 📱 Mobile Responsiveness */
