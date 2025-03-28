@@ -9,7 +9,10 @@ body {
 
 .navbar {
     width: 100%;
+    background-color: white;
     position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .section1 {
@@ -21,31 +24,71 @@ body {
     justify-content: center;
 }
 
+/* Styling for the container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+/* Centering and styling the text-box */
 .text-box {
-    height: 350px;
-    width: 400px;
-    border: 2px solid white;
+    color: white;
     text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    margin-left: 450px;
-    margin-top: -10px;
 }
 
 .text-box h1 {
     font-size: 3rem;
-    color: white;
     margin-bottom: 20px;
-    margin-top: 150px;
-}
-
-.text-box .btn {
-    background: white;
-    border: none;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
 
+/* Styling for the button */
+.btn-light {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .section1 {
+        height: 500px;
+    }
+
+    .text-box h1 {
+        font-size: 2.5rem;
+    }
+
+    .btn-light {
+        font-size: 1rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .section1 {
+        height: 400px;
+    }
+
+    .text-box h1 {
+        font-size: 2rem;
+    }
+
+    .btn-light {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
 .about p {
     font-size: 1.2rem;
     max-width: 800px;
@@ -143,45 +186,97 @@ body {
     margin-top: 30px;
 }
 
-.pic4{
+.section2 {
+    position: relative;
     width: 100%;
-    height: 450px;
-    object-fit: cover;
-    object-position: center;
-    margin-top: 100px;
 }
-footer {
-    background-color: #F5F6F3; /* Light background */
+
+.pic4 {
+    width: 100%;
+    height: auto;
+}
+
+/* White rectangle with text */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px 40px;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-overlay p {
+    font-size: 1.5rem;
+    color: #696b0a;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .text-overlay p {
+        font-size: 1.2rem;
+    }
+
+    .text-overlay {
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-overlay p {
+        font-size: 1rem;
+    }
+
+    .text-overlay {
+        padding: 10px 20px;
+    }
+}
+
+footer {
+    background-color: #F5F6F3;
     font-family: serif;
-    margin-top: 50px;
+    margin-top: 100px;
+    padding: 20px 10px;
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centers logo */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centers it horizontally */
+    text-align: center;
 }
 
 .footer-logo h2 {
     font-size: 32px;
     font-family: 'Imperial Script', cursive;
     font-weight: normal;
-    text-align: center;
-    margin-left: 500px;
 }
 
 .footer-links {
     display: flex;
     gap: 40px;
-    margin-top: 10px;
+    justify-content: flex-end; /* Keeps links/text to the right */
+    text-align: left;
+    flex: 1;
 }
 
 .footer-column {
-    text-align: left;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .footer-column h3 {
@@ -213,4 +308,46 @@ footer {
     margin-top: 20px;
     font-size: 12px;
     color: #555;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo h2 {
+        font-size: 24px;
+    }
+
+    .footer-column h3 {
+        font-size: 14px;
+    }
+
+    .footer-column p {
+        font-size: 12px;
+    }
 }
