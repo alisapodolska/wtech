@@ -278,33 +278,7 @@ h1 {
     display: none; /* Hide for sorting purposes */
 }
 
-.product-item .add-to-bag {
-    position: absolute;
-    bottom: 20px;
-    right: 15%; /* Align with the right edge of the image */
-    padding: 8px 16px;
-    background-color: white;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth animation */
-}
-
-/* Show button on hover */
-.product-item:hover .add-to-bag {
-    opacity: 1;
-    transform: translateY(0); /* Slide up into position */
-}
-
-/* Button hover effect */
-.product-item .add-to-bag:hover {
-    background-color: #d2b48c;
-}
-
+c
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
     .product-item {

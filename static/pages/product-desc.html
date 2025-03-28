@@ -44,8 +44,29 @@
                 <button class="btn add-to-bag-btn mt-3">ADD TO BAG</button>
             </div>
 
-            <div class="col-md-4 img ">
-                <img src="https://burrenperfumery.com/cdn/shop/products/WildRoseBox_1024x.png?v=1600941764" class="pic3"/>
+            <div class="col-md-4 img">
+                <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="img-container">
+                                <img src="../img/prod1.jpg" class="product-img" alt="Wild Rose Box">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="img-container">
+                                <img src="../img/prod1_1.jpg" class="product-img" alt="Wild Rose Angle 2">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
 
             <div class="col-md-4 description-box">
@@ -92,6 +113,7 @@
                 <div class="product-price">€130.00 / 50ml</div>
                 <span class="price">130.00</span>
             </div>
+            <button class="add-to-bag">Add to Bag</button>
         </div>
         <div class="col-12 col-md-4 mb-3 product-item">
             <div class="product-image" style="background-image: url('../img/prod2.jpg');"></div>
@@ -101,6 +123,7 @@
                 <div class="product-price">€130.00 / 50ml</div>
                 <span class="price">130.00</span>
             </div>
+            <button class="add-to-bag">Add to Bag</button>
         </div>
         <div class="col-12 col-md-4 mb-3 product-item">
             <div class="product-image" style="background-image: url('../img/prod3.jpg');"></div>
@@ -110,6 +133,7 @@
                 <div class="product-price">€60.00 / 50ml</div>
                 <span class="price">130.00</span>
             </div>
+            <button class="add-to-bag">Add to Bag</button>
         </div>
     </div>
 </section>
