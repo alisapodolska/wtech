@@ -15,6 +15,28 @@ body {
     z-index: 1000;
 }
 
+.perfume-test-btn {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.perfume-test-btn:hover {
+    background-color: #696b0a;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .perfume-test-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
 .section1 {
     background: url("https://t4.ftcdn.net/jpg/06/93/07/29/360_F_693072910_XXt8dkPDWzSSep5tG2UkOIwYQpmIn0Oh.jpg") no-repeat center center;
     background-size: cover;
