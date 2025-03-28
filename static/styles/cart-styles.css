@@ -1,0 +1,128 @@
+body {
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background for better contrast */
+}
+
+.logo {
+    font-family: 'Imperial Script', cursive;
+    font-size: 50px;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    height: 75px;
+    top: 0;
+    z-index: 1000;
+}
+/* Cart Section */
+.cart-section {
+    margin-top: 100px; /* To account for fixed navbar */
+}
+
+.cart-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    margin-bottom: 15px;
+}
+
+.item-image.placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #e0e0e0; /* Placeholder for image */
+}
+
+.item-details p {
+    font-size: 1rem;
+}
+
+.quantity span {
+    margin: 0 5px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.subtotal {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.cart-actions .btn {
+    padding: 10px 20px;
+}
+
+/* Footer (same as example) */
+footer {
+    background-color: #F5F6F3; /* Light background */
+    text-align: center;
+    font-family: serif;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo h2 {
+    font-size: 32px;
+    font-family: 'Imperial Script', cursive;
+    font-weight: normal;
+    text-align: center;
+    margin-left: 500px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.footer-column {
+    text-align: left;
+    max-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    background-color: white;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #555;
+}
