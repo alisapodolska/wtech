@@ -4,7 +4,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Light background for better contrast */
+    background-color: #f9f9f9; 
 }
 
 .logo {
@@ -19,9 +19,10 @@ body {
     top: 0;
     z-index: 1000;
 }
-/* Cart Section */
+
+
 .cart-section {
-    margin-top: 100px; /* To account for fixed navbar */
+    margin-top: 100px; 
 }
 
 .cart-section h2 {
@@ -33,10 +34,10 @@ body {
     margin-bottom: 15px;
 }
 
-.item-image.placeholder {
+.item-image {
     width: 80px;
     height: 80px;
-    background-color: #e0e0e0; /* Placeholder for image */
+    object-fit: cover; 
 }
 
 .item-details p {
@@ -61,9 +62,9 @@ body {
     padding: 10px 20px;
 }
 
-/* Footer (same as example) */
+
 footer {
-    background-color: #F5F6F3; /* Light background */
+    background-color: #F5F6F3;
     text-align: center;
     font-family: serif;
     margin-top: 50px;

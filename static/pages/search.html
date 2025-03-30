@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../styles/search-styles.css">
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <header class="logo">
@@ -23,7 +22,6 @@
                 <li class="nav-item"><a class="nav-link" href="catalog.html">Shop</a></li>
                 <li class="nav-item"><a class="nav-link" href="aboutUs.html">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="myProfile.html">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Offers</a></li>
                 <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="cart.html">Bag</a></li>
@@ -33,70 +31,292 @@
 </nav>
 
 <header class="section1">
-    <div class="container">
-        <div class="search-box text-center">
-            <input type="text" class="search-bar" placeholder="Search">
-        </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-button">Search</button>
     </div>
 </header>
 
-<section class="about text-center py-5">
-    <div class="container">
-        <p>
-            Two girls studying at FIIT Slovakia decided to turn their passion for fragrances into a small business, crafting unique perfumes that tell a story. Inspired by emotions, memories, and the art of scent, each perfume is carefully blended by hand in small batches.
-        </p>
-    </div>
-</section>
+<nav class="filter-menu">
+    <ul>
+        <li class="active"><span class="icon">✖</span> All</li>
+        <li>Fragrances</li>
+        <li>Castile Soaps</li>
+        <li>Body Lotions</li>
+        <li>Gift Boxes</li>
+        <li>Mid-size Gift Sets</li>
+        <li>Gift Cards</li>
+    </ul>
+</nav>
 
-<section class="products">
-    <div class="container_pr">
-        <div class="product_big">
-            <img src="//burrenperfumery.com/cdn/shop/files/MIK8330_2x_2f90858a-27bf-4a66-b202-4f0816e9529f_550x800.jpg?v=1613744951" />
-            <div class="details">
-                <h2>Lavender and Lemon<br/>Organic Night Cream</h2>
-                <h3>60ml</h3>
-                <p>€28.50</p>
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-lg-3 filter-sidebar">
+            <div class="filter-container">
+                <h5>SHOW FILTERS</h5>
+                <hr>
+                <table class="filter-table">
+                    <tr>
+                        <td>
+                            <div class="filter-item">
+                                <span class="filter-circle lost-garden"></span> LOST GARDEN
+                            </div>
+                        </td>
+                        <td>
+                            <div class="filter-item">
+                                <span class="filter-circle woodland"></span> WOODLAND
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="filter-item">
+                                <span class="filter-circle grassland"></span> GRASSLAND
+                            </div>
+                        </td>
+                        <td>
+                            <div class="filter-item">
+                                <span class="filter-circle herb-garden"></span> HERB GARDEN
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="filter-item">
+                                <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="price-section">
+                    <h6>Price (€)</h6>
+                    <input type="range" class="form-range price-range" min="0" max="150" value="150">
+                    <div class="text-end price-display">150.00</div>
+                </div>
             </div>
         </div>
-        <div class="product1">
-            <img src="//burrenperfumery.com/cdn/shop/files/MIK7372_2x_780fd5bb-4c5a-4567-80e7-64240ec82beb_550x800.jpg?v=1613744953" class="pic" />
-            <div class="details1">
-                <img src="//burrenperfumery.com/cdn/shop/t/33/assets/new-swish.png?v=79032109851780414431625048672" class="new-swish" />
-                <h2>Summer Harvest<br/>Body Lotion</h2>
-                <h3>200ml</h3>
-                <p>€28.00</p>
+
+        
+        <div class="col-lg-9">
+            
+            <button class="btn btn-outline-secondary show-filters-btn" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
+                Show Filters
+            </button>
+
+            <div class="collapse filters-mobile" id="filtersCollapse">
+                <div class="filter-container">
+                    <h5>SHOW FILTERS</h5>
+                    <hr>
+                    <table class="filter-table">
+                        <tr>
+                            <td>
+                                <div class="filter-item">
+                                    <span class="filter-circle lost-garden"></span> LOST GARDEN
+                                </div>
+                            </td>
+                            <td>
+                                <div class="filter-item">
+                                    <span class="filter-circle woodland"></span> WOODLAND
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="filter-item">
+                                    <span class="filter-circle grassland"></span> GRASSLAND
+                                </div>
+                            </td>
+                            <td>
+                                <div class="filter-item">
+                                    <span class="filter-circle herb-garden"></span> HERB GARDEN
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="filter-item">
+                                    <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="price-section">
+                        <h6>Price (€)</h6>
+                        <input type="range" class="form-range price-range" min="0" max="150" value="150">
+                        <div class="text-end price-display">150.00</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-grid">
+                
+                <div class="sort-container">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sort by Price
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                            <li><a class="dropdown-item" href="#" data-sort="asc">high to low</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="desc">low to high</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <h5 style="padding-top: 20px">Products</h5>
+                <div class="row">
+                    
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod1.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">WILD ROSE</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod2.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">NEROLI</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod3.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">ILAUN</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€60.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod1.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">WILD ROSE</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod2.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">NEROLI</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod3.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">ILAUN</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€60.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod1.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">WILD ROSE</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod2.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">NEROLI</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod3.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">ILAUN</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€60.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod1.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">WILD ROSE</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod2.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">NEROLI</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€130.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 product-item">
+                        <a href="product-desc.html" class="product-link">
+                            <div class="product-image" style="background-image: url('../img/prod3.jpg');"></div>
+                        </a>
+                        <div class="product-overlay">
+                            <div class="product-name">ILAUN</div>
+                            <div class="product-subtitle">Eau de Parfum</div>
+                            <div class="product-price">€60.00 / 50ml</div>
+                            <span class="price">130.00</span>
+                        </div>
+                        <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="product2">
-            <img src="//burrenperfumery.com/cdn/shop/files/lost-garden-serum_550x800.jpg?v=1613744955" class="pic2" />
-            <div class="details2">
-                <h2>Lost Garden<br/>Rose Facial Serum</h2>
-                <h3>30ml</h3>
-                <p>€38.00</p>
-            </div>
-        </div>
     </div>
-</section>
-
-<section class="scent-families text-center py-5">
-    <div class="container_sf">
-        <h2>Scent Families</h2>
-        <img src="https://burrenperfumery.com/cdn/shop/files/9033_2x_72bd8fb2-fda6-4ad3-8ada-be767a10a6ff_1200x.jpg?v=1613745119" class="pic3" />
-        <ul class="list-group">
-            <li>Lost Scents</li>
-            <li>Jasmine Crush</li>
-            <li>Rose Garden</li>
-            <li>Intensidad</li>
-            <li>New Sensation</li>
-        </ul>
-    </div>
-</section>
-
-<section class="section2">
-    <div class="container">
-        <img src="https://i.pinimg.com/736x/f4/28/a8/f428a8f8fcda2f0f5247f43acf1dea16.jpg" class="pic4"/>
-    </div>
-</section>
+</div>
 
 <footer>
     <div class="footer-container">
@@ -105,7 +325,7 @@
         </div>
         <div class="footer-links">
             <div class="footer-column">
-                <h3>The Aroma UA</h3>
+                <h3>The Burren Perfumery</h3>
                 <ul>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact</a></li>
@@ -122,6 +342,16 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+    document.querySelectorAll('.price-range').forEach(slider => {
+        slider.addEventListener('input', function() {
+            this.nextElementSibling.textContent = this.value + '.00';
+        });
+    });
+</script>
 </body>
 </html>

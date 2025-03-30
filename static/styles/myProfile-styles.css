@@ -4,7 +4,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* Белый фон */
+    background-color: #ffffff; 
 }
 
 .logo {
@@ -20,26 +20,26 @@ body {
     z-index: 1000;
 }
 
-/* Profile Header */
+
 .profile-header {
     margin-top: 75px;
 }
 
 .profile-title {
-    font-size: 2.5rem; /* Увеличиваем для привлекательности */
-    font-family: 'Imperial Script', cursive; /* Красивый шрифт */
-    color: #34495e; /* Темно-синий для элегантности */
+    font-size: 2.5rem; 
+    font-family: 'Imperial Script', cursive; 
+    color: #34495e; 
     margin-bottom: 20px;
-    text-align: center; /* Центрируем */
-    letter-spacing: 1px; /* Легкая воздушность */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Мягкая тень для объема */
+    text-align: center; 
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
 }
 
 .profile-actions .btn {
     padding: 10px 20px;
 }
 
-/* Profile Info */
+
 .profile-info {
     margin-top: 20px;
 }
@@ -49,22 +49,22 @@ body {
 }
 
 .user-name {
-    font-size: 2rem; /* Увеличиваем для заметности */
-    font-family: 'Imperial Script', cursive; /* Элегантный шрифт */
-    color: #34495e; /* Темно-синий, сочетается с заголовком */
+    font-size: 2rem; 
+    font-family: 'Imperial Script', cursive; 
+    color: #34495e; 
     margin-bottom: 5px;
-    text-align: center; /* Центрируем */
-    letter-spacing: 1px; /* Воздушность */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    text-align: center; 
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
 }
 
 .user-email {
     font-size: 1rem;
     color: #6b7280;
-    text-align: center; /* Центрируем для симметрии */
+    text-align: center; 
 }
 
-/* Orders List */
+
 .orders-list {
     margin-top: 20px;
 }
@@ -96,7 +96,7 @@ body {
     padding: 5px 10px;
 }
 
-/* Footer */
+
 footer {
     background-color: #F5F6F3;
     text-align: center;

@@ -25,13 +25,13 @@ body {
 }
 
 .text-box {
-    border: 2px solid white; /* White border */
-    padding: 20px 40px; /* Space inside the box */
-    display: inline-block; /* Ensures it wraps around content */
+    border: 2px solid white; 
+    padding: 20px 40px; 
+    display: inline-block; 
 }
 
 h1 {
-    color: white; /* Text color */
+    color: white; 
     font-size: 2em;
     margin: 0;
 }
@@ -44,10 +44,10 @@ h1 {
     padding: 10px 0;
     background: white;
     border-bottom: 1px dotted black;
-    position: relative; /* Needed for absolute positioning of button */
+    position: relative; 
 }
 
-/* Style the list */
+
 .filter-menu ul {
     list-style: none;
     display: flex;
@@ -122,7 +122,7 @@ h1 {
     margin-right: 5px;
 }
 
-/* Filter circles */
+
 .filter-circle {
     width: 20px;
     height: 20px;
@@ -132,12 +132,12 @@ h1 {
 }
 
 .lost-garden { background-color: #f4a7a7; }
-.woodland { background-color: #d2b48c; } /* Fixed class name */
+.woodland { background-color: #d2b48c; } 
 .grassland { background-color: #c3b1e1; }
-.herb-garden { background-color: #d4edda; } /* Fixed class name */
+.herb-garden { background-color: #d4edda; } 
 .atlantic-coast { background-color: #a3d4d5; }
 
-/* Filter sidebar for large screens */
+
 .filter-sidebar {
     border-right: 1px solid #ddd;
     padding: 20px;
@@ -145,12 +145,12 @@ h1 {
     overflow-y: auto;
 }
 
-/* Filter container */
+
 .filter-container {
     padding: 20px;
 }
 
-/* Table layout for filters */
+
 .filter-table {
     width: 100%;
     border-collapse: collapse;
@@ -165,19 +165,19 @@ h1 {
 }
 
 .filter-table tr:first-child td {
-    border-top: none; /* Remove top border for the first row */
+    border-top: none; 
 }
 
 .filter-table tr:last-child td {
-    border-bottom: none; /* Remove bottom border for the last row */
+    border-bottom: none; 
 }
 
 .filter-table td:first-child {
-    border-left: none; /* Remove left border for the first column */
+    border-left: none; 
 }
 
 .filter-table td:last-child {
-    border-right: none; /* Remove right border for the last column */
+    border-right: none; 
 }
 
 .filter-item {
@@ -188,17 +188,17 @@ h1 {
     font-weight: 500;
 }
 
-/* Product grid */
+
 .product-grid {
     padding: 20px;
 }
 
-/* Show Filters button on mobile */
+
 .show-filters-btn {
     display: none;
 }
 
-/* Filters container on mobile */
+
 .filters-mobile {
     display: none;
     padding: 20px;
@@ -219,7 +219,7 @@ h1 {
     }
 }
 
-/* Style for price range slider */
+
 .price-range {
     width: 100%;
 }
@@ -228,27 +228,27 @@ h1 {
     margin-top: 20px;
 }
 
-/* Product item styling */
+
 .product-item {
     position: relative;
-    height: 300px; /* Fixed height to match desired image height */
+    height: 300px; 
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
     margin-top: 50px;
-    background-color: white; /* Light background for the container */
+    background-color: white; 
 }
 
 .product-item .product-image {
-    width: 70%; /* Image takes 80% of the container width */
-    height: 300px; /* Fixed height, matches container height */
-    background-size: cover; /* Crop the image if it doesn't fit */
+    width: 70%; 
+    height: 300px; 
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    top: 0; /* Align to the top */
+    top: 0; 
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
+    transform: translateX(-50%); 
 }
 
 .product-item .product-overlay {
@@ -275,29 +275,29 @@ h1 {
 }
 
 .product-item .price {
-    display: none; /* Hide for sorting purposes */
+    display: none; 
 }
 
 .product-link {
-    display: block; /* Makes the entire area clickable */
-    text-decoration: none; /* Removes underline */
-    color: inherit; /* Keeps text color consistent */
+    display: block; 
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .product-image {
-    /* Your existing styles remain */
-    cursor: pointer; /* Shows it's clickable */
+    
+    cursor: pointer; 
 }
 
-/* Optional: Add hover effect */
+
 .product-link:hover .product-image {
-    opacity: 0.9; /* Slight fade effect on hover */
+    opacity: 0.9; 
 }
 
 .product-item .add-to-bag {
     position: absolute;
     bottom: 20px;
-    right: 15%; /* Align with the right edge of the image */
+    right: 15%; 
     padding: 8px 16px;
     background-color: white;
     color: #333;
@@ -305,39 +305,39 @@ h1 {
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth animation */
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 
-/* Show button on hover */
+
 .product-item:hover .add-to-bag {
     opacity: 1;
-    transform: translateY(0); /* Slide up into position */
+    transform: translateY(0); 
 }
 
-/* Button hover effect */
+
 .product-item .add-to-bag:hover {
     background-color: #d2b48c;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 767.98px) {
     .product-item {
-        height: 250px; /* Smaller height on mobile */
+        height: 250px; 
     }
 
     .product-item .product-image {
-        width: 160px; /* Smaller fixed width on mobile (80% of 200px) */
-        height: 250px; /* Matches container height on mobile */
+        width: 160px; 
+        height: 250px; 
     }
 
     .product-item .product-overlay {
-        left: calc(50% - 72px); /* Adjust for smaller image width (160px width, so 80px from center to left edge) */
+        left: calc(50% - 72px); 
     }
 
     .product-item .product-name {
-        font-size: 20px; /* Smaller font on mobile */
+        font-size: 20px; 
     }
 
     .product-item .product-subtitle {
@@ -357,7 +357,7 @@ footer {
 
 .footer-container {
     display: flex;
-    justify-content: center; /* Centers logo */
+    justify-content: center; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -368,7 +368,7 @@ footer {
 .footer-logo {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Centers it horizontally */
+    transform: translateX(-50%); 
     text-align: center;
 }
 
@@ -381,7 +381,7 @@ footer {
 .footer-links {
     display: flex;
     gap: 40px;
-    justify-content: flex-end; /* Keeps links/text to the right */
+    justify-content: flex-end; 
     text-align: left;
     flex: 1;
 }
@@ -423,7 +423,7 @@ footer {
     text-align: center;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;

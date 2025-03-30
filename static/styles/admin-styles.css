@@ -4,72 +4,72 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* Light background for better contrast, как в cart */
+    background-color: #ffffff; 
 }
 
 .logo {
     font-family: 'Imperial Script', cursive;
-    font-size: 50px; /* Идентично вашему коду */
+    font-size: 50px; 
 }
 
 .navbar {
     width: 100%;
-    background-color: white; /* Идентично вашему коду */
-    position: fixed; /* Идентично вашему коду */
-    top: 0; /* Идентично вашему коду */
-    z-index: 1000; /* Идентично вашему коду */
-    /* Высота не указана явно в вашем коде, определяется содержимым, но для единообразия с cart оставим как есть */
+    background-color: white; 
+    position: fixed; 
+    top: 0; 
+    z-index: 1000; 
+    
 }
 
-/* Admin Header */
+
 .admin-header {
-    margin-top: 75px; /* Уменьшаем до 75px, чтобы соответствовать высоте .navbar из cart, а не 100px */
+    margin-top: 75px; 
 }
 
 .admin-title {
-    font-size: 2.5rem; /* Увеличиваем для привлекательности */
-    font-family: 'Imperial Script', cursive; /* Красивый шрифт */
-    color: #34495e; /* Темно-синий для элегантности */
+    font-size: 2.5rem; 
+    font-family: 'Imperial Script', cursive; 
+    color: #34495e; 
     margin-bottom: 20px;
-    text-align: center; /* Центрируем */
-    letter-spacing: 1px; /* Легкая воздушность */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Мягкая тень для объема */
+    text-align: center; 
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
 }
 
 .admin-actions .btn {
-    padding: 10px 20px; /* Как в cart-actions */
+    padding: 10px 20px; 
 }
 
-/* Product List */
+
 .product-list {
-    margin-top: 20px; /* Небольшой отступ для визуальной гармонии */
+    margin-top: 20px; 
 }
 
 .product-item {
-    margin-bottom: 15px; /* Как в cart */
+    margin-bottom: 15px; 
 }
 
 .item-image {
     width: 80px;
     height: 80px;
-    object-fit: cover; /* Чтобы изображение заполняло область, сохраняя пропорции */
+    object-fit: cover; 
 }
 
 .item-details p {
-    font-size: 1rem; /* Как в cart */
+    font-size: 1rem; 
 }
 
 .price {
-    font-weight: bold; /* Как в cart */
+    font-weight: bold; 
 }
 
 .product-item .btn {
-    padding: 5px 10px; /* Меньше, чем в cart-actions, для кнопок внутри списка */
+    padding: 5px 10px; 
 }
 
-/* Footer */
+
 footer {
-    background-color: #F5F6F3; /* Light background, как в cart */
+    background-color: #F5F6F3; 
     text-align: center;
     font-family: serif;
     margin-top: 50px;

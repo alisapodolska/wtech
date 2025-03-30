@@ -17,14 +17,14 @@ body {
 
 .product-container {
     background-image: url('../img/background_img1.png');
-    background-size: cover; /* Ensures it covers the whole width */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Ensures full screen height */
+    min-height: 100vh; 
     display: flex;
-    align-items: center; /* Centers content vertically */
-    justify-content: center; /* Centers content horizontally */
-    padding: 50px 10px; /* Responsive spacing */
+    align-items: center; 
+    justify-content: center; 
+    padding: 50px 10px; 
 }
 
 .content {
@@ -41,7 +41,7 @@ body {
 
 .img-container {
     width: 100%;
-    height: 400px; /* Fixed height for consistency */
+    height: 400px; 
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -51,12 +51,12 @@ body {
 .product-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Maintains aspect ratio */
+    object-fit: contain; 
     max-width: 100%;
     max-height: 100%;
 }
 
-/* Carousel controls styling */
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%;
@@ -72,7 +72,7 @@ body {
 .product-item .add-to-bag {
     position: absolute;
     bottom: 20px;
-    right: 15%; /* Align with the right edge of the image */
+    right: 15%; 
     padding: 8px 16px;
     background-color: white;
     color: #333;
@@ -80,70 +80,70 @@ body {
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth animation */
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 
-/* Show button on hover */
+
 .product-item:hover .add-to-bag {
     opacity: 1;
-    transform: translateY(0); /* Slide up into position */
+    transform: translateY(0); 
 }
 
-/* Button hover effect */
+
 .product-item .add-to-bag:hover {
     background-color: #d2b48c;
 }
 
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .img-container {
-        height: 300px; /* Smaller height for tablets */
+        height: 300px; 
     }
 }
 
 @media (max-width: 576px) {
     .img-container {
-        height: 200px; /* Even smaller for mobile */
+        height: 200px; 
     }
 
     .carousel-control-prev,
     .carousel-control-next {
-        display: none; /* Hide controls on mobile for more image space */
+        display: none; 
     }
 }
 
-/* Ensure carousel takes full width of its column */
+
 .carousel {
     width: 100%;
 }
 
 .product-name {
-    font-size: 32px; /* Larger heading */
+    font-size: 32px; 
     font-weight: bold;
 }
 
 .product-volume {
-    font-size: 14px; /* Smaller text for volume */
-    color: #666; /* Soft gray for readability */
+    font-size: 14px; 
+    color: #666; 
 }
 
 .product-price {
-    font-size: 24px; /* Ensure price is well seen */
+    font-size: 24px; 
     font-weight: bold;
-    color: #333; /* Dark for visibility */
+    color: #333; 
 }
 
 .quantity-label {
-    font-size: 14px; /* Smaller label text */
+    font-size: 14px; 
     font-weight: 500;
     color: #444;
 }
 
 .quantity-input {
-    width: 60px !important; /* Reduce width for better fit */
+    width: 60px !important; 
     text-align: center;
 }
 
@@ -198,7 +198,7 @@ body {
     max-width: 25%;
 }
 
-/* Product container (three product columns) */
+
 .scent-container {
     flex: 3;
     display: flex;
@@ -206,7 +206,7 @@ body {
     justify-content: space-between;
 }
 
-/* Each product card */
+
 .product-card {
     flex: 1;
     text-align: center;
@@ -214,24 +214,24 @@ body {
 
 .product-item {
     position: relative;
-    height: 300px; /* Fixed height to match desired image height */
+    height: 300px; 
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
     margin-top: 50px;
-    background-color: white; /* Light background for the container */
+    background-color: white; 
 }
 
 .product-item .product-image {
-    width: 70%; /* Image takes 80% of the container width */
-    height: 300px; /* Fixed height, matches container height */
-    background-size: cover; /* Crop the image if it doesn't fit */
+    width: 70%; 
+    height: 300px; 
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    top: 0; /* Align to the top */
+    top: 0; 
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
+    transform: translateX(-50%); 
 }
 
 .product-item .product-overlay {
@@ -258,26 +258,26 @@ body {
 }
 
 .product-item .price {
-    display: none; /* Hide for sorting purposes */
+    display: none; 
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 767.98px) {
     .product-item {
-        height: 250px; /* Smaller height on mobile */
+        height: 250px; 
     }
 
     .product-item .product-image {
-        width: 160px; /* Smaller fixed width on mobile (80% of 200px) */
-        height: 250px; /* Matches container height on mobile */
+        width: 160px; 
+        height: 250px; 
     }
 
     .product-item .product-overlay {
-        left: calc(50% - 72px); /* Adjust for smaller image width (160px width, so 80px from center to left edge) */
+        left: calc(50% - 72px); 
     }
 
     .product-item .product-name {
-        font-size: 20px; /* Smaller font on mobile */
+        font-size: 20px; 
     }
 
     .product-item .product-subtitle {
@@ -289,7 +289,7 @@ body {
     }
 }
 
-/* 📱 Mobile Responsiveness */
+
 @media (max-width: 768px) {
     .scent-family-section {
         flex-direction: column;
@@ -320,7 +320,7 @@ footer {
 
 .footer-container {
     display: flex;
-    justify-content: center; /* Centers logo */
+    justify-content: center; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -331,7 +331,7 @@ footer {
 .footer-logo {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Centers it horizontally */
+    transform: translateX(-50%); 
     text-align: center;
 }
 
@@ -344,7 +344,7 @@ footer {
 .footer-links {
     display: flex;
     gap: 40px;
-    justify-content: flex-end; /* Keeps links/text to the right */
+    justify-content: flex-end; 
     text-align: left;
     flex: 1;
 }
@@ -386,7 +386,7 @@ footer {
     text-align: center;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
