@@ -23,12 +23,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="catalog.blade.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="aboutUs.blade.php">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="myProfile.blade.php">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="search.blade.php">Search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.blade.php">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cart.blade.php">Bag</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('catalog') }}">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('search') }}">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">Bag</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="container">
             <div class="text-box text-center">
                 <h1>Uliana & Alisa</h1>
-                <button class="btn btn-shop" >SHOP NOW</button>
+                <a class="btn btn-shop" href="{{ route('catalog') }}">SHOP NOW</a>
             </div>
         </div>
     </header>
@@ -57,7 +57,7 @@
     <section class="products">
         <div class="container">
             <div class="left-section">
-                <a href="product-desc.blade.php" class="product-link">
+                <a href="{{ route('product-desc') }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-spray-can fa-3x"></i>
                         <h3>PERFUME BODY LOTIONS</h3>
@@ -65,7 +65,7 @@
                         <p class="price">€28.00</p>
                     </div>
                 </a>
-                <a href="product-desc.blade.php" class="product-link">
+                <a href="{{ route('product-desc') }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-soap fa-3x"></i>
                         <h3>ORGANIC CASTILE SOAP</h3>
@@ -75,7 +75,7 @@
                 </a>
             </div>
             <div class="right-section">
-                <a href="product-desc.blade.php" class="product-link">
+                <a href="{{ route('product-desc') }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-spray-can fa-3x"></i>
                         <h3>PERFUME BODY LOTIONS</h3>
@@ -83,7 +83,7 @@
                         <p class="price">€28.00</p>
                     </div>
                 </a>
-                <a href="product-desc.blade.php" class="product-link">
+                <a href="{{ route('product-desc') }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-soap fa-3x"></i>
                         <h3>ORGANIC CASTILE SOAP</h3>
@@ -101,7 +101,7 @@
             <img src="https://i.pinimg.com/736x/f4/28/a8/f428a8f8fcda2f0f5247f43acf1dea16.jpg" class="pic4" alt="Perfume Test Background">
             <div class="text-overlay">
                 <p>Take a test to find the best perfume for you</p>
-                <button class="btn perfume-test-btn" >Take the Test</button>
+                <a class="btn perfume-test-btn" href="{{ route('test') }}" >Take the Test</a>
             </div>
         </div>
     </section>
@@ -116,8 +116,8 @@
                 <div class="footer-column">
                     <h3>The Aroma UA</h3>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('about-us') }}">About Us</a></li>
+                        <li><a href="/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">

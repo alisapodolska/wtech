@@ -75,48 +75,64 @@ body {
     text-align: right; /* Align subtotal to right on larger screens */
 }
 
-.cart-actions .btn {
-    padding: 10px 20px;
-    width: 100%; /* Full width on mobile */
-    margin: 5px 0;
+.cart-actions {
+    width: 100%;
+    padding: 10px 0;
 }
 
-/* Footer styling */
+/* Style the buttons */
+.custom-btn {
+    padding: 10px 20px; /* Consistent padding */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: white;
+    color: #333;
+}
+
+.custom-btn:hover {
+    background-color: #d2b48c;
+}
+
+
 footer {
     background-color: #F5F6F3;
-    text-align: center;
     font-family: serif;
-    padding: 20px 0;
-    margin-top: auto; /* Pushes footer to bottom */
+    margin-top: 100px;
+    padding: 20px 10px;
 }
 
 .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    flex-direction: column; /* Stack columns on mobile */
-    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
 .footer-logo h2 {
     font-size: 32px;
     font-family: 'Imperial Script', cursive;
     font-weight: normal;
-    text-align: center;
-    margin-left: 0; /* Remove margin on mobile */
 }
 
 .footer-links {
     display: flex;
-    flex-wrap: wrap; /* Wrap columns on mobile */
-    gap: 20px;
-    justify-content: center; /* Center on mobile */
+    gap: 40px;
+    justify-content: flex-end;
+    text-align: left;
+    flex: 1;
 }
 
 .footer-column {
-    text-align: left;
-    max-width: 200px;
-    width: 100%; /* Full width on mobile */
+    max-width: 250px;
 }
 
 .footer-column h3 {
@@ -149,67 +165,45 @@ footer {
     font-size: 12px;
     color: #555;
     padding: 10px 0;
+    text-align: center;
 }
 
-/* Media Query for Mobile Devices (max-width: 768px) */
-@media screen and (max-width: 768px) {
-    .logo {
-        font-size: 30px; /* Smaller logo on mobile */
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .navbar {
-        height: 60px; /* Smaller navbar on mobile */
-    }
-
-    .cart-section {
-        margin-top: 80px; /* Adjust for smaller navbar */
-        padding: 10px;
-    }
-
-    .cart-section h2 {
-        font-size: 1.2rem; /* Smaller header on mobile */
-    }
-
-    .cart-item {
-        flex-direction: column; /* Stack items vertically on mobile */
-        text-align: center; /* Center text on mobile */
-    }
-
-    .item-image {
-        width: 60px; /* Smaller images on mobile */
-        height: 60px;
-    }
-
-    .item-details p {
-        font-size: 0.9rem; /* Smaller text on mobile */
-    }
-
-    .subtotal {
-        text-align: center; /* Center subtotal on mobile */
-        font-size: 1rem; /* Smaller subtotal on mobile */
-    }
-
-    .footer-logo h2 {
-        font-size: 24px; /* Smaller footer logo on mobile */
-    }
-
-    .footer-column {
-        max-width: 100%; /* Full width for each column on mobile */
+    .footer-logo {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
     }
 
     .footer-links {
-        gap: 10px; /* Less gap between columns on mobile */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo h2 {
+        font-size: 24px;
     }
 
     .footer-column h3 {
-        font-size: 14px; /* Smaller headers in footer on mobile */
+        font-size: 14px;
     }
 
     .footer-column p {
-        font-size: 12px; /* Smaller text in footer on mobile */
-    }
-
-    .footer-bottom {
-        font-size: 10px; /* Smaller footer bottom text on mobile */
+        font-size: 12px;
     }
 }

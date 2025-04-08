@@ -6,7 +6,7 @@
     <title>The Aroma UA - Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/styles/cart-styles.css">
+    <link rel="stylesheet" href="{{ asset('css/cart-styles.css') }}">
 </head>
 <body>
 
@@ -21,12 +21,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="catalog.blade.php">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="aboutUs.blade.php">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="myProfile.blade.php">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="search.blade.php">Search</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.blade.php">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="cart.html">Bag</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('catalog') }}">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('search') }}">Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">Bag</a></li>
             </ul>
         </div>
     </div>
@@ -81,10 +81,10 @@
             <h5>Subtotal</h5>
             <h5>€260.00</h5> 
         </div>
-        
+
         <div class="cart-actions d-flex justify-content-between">
-            <button class="btn btn-outline-secondary">Continue Shopping</button>
-            <button class="btn btn-secondary">Checkout</button>
+            <a class="btn btn-outline-secondary custom-btn" href="{{ route('catalog') }}">Continue Shopping</a>
+            <button class="btn btn-secondary custom-btn">Checkout</button>
         </div>
     </div>
 </section>
@@ -99,7 +99,7 @@
             <div class="footer-column">
                 <h3>The Aroma UA</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{ route('about-us') }}">About Us</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
