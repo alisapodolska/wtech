@@ -1,47 +1,63 @@
 body {
     font-family: 'Arial', sans-serif;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures body takes full viewport height */
 }
 
+/* Logo styling */
 .logo {
     font-family: 'Imperial Script', cursive;
     font-size: 50px;
 }
 
+/* Navbar styling */
 .navbar {
     width: 100%;
     position: fixed;
     height: 75px;
     top: 0;
     z-index: 1000;
+    background-color: #fff; /* Optional: Add background for visibility */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: Add shadow for depth */
 }
 
-
+/* Cart section */
 .cart-section {
-    margin-top: 100px; 
+    margin-top: 100px;
+    padding: 20px;
+    flex-grow: 1; /* Allows cart to push footer to bottom */
 }
 
 .cart-section h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
+    text-align: center; /* Center header on mobile */
 }
 
 .cart-item {
     margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap on small screens */
+    gap: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .item-image {
     width: 80px;
     height: 80px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .item-details p {
     font-size: 1rem;
+    margin: 0;
 }
 
 .quantity span {
@@ -56,26 +72,30 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 20px;
+    text-align: right; /* Align subtotal to right on larger screens */
 }
 
 .cart-actions .btn {
     padding: 10px 20px;
+    width: 100%; /* Full width on mobile */
+    margin: 5px 0;
 }
 
-
+/* Footer styling */
 footer {
     background-color: #F5F6F3;
     text-align: center;
     font-family: serif;
-    margin-top: 50px;
+    padding: 20px 0;
+    margin-top: auto; /* Pushes footer to bottom */
 }
 
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
+    flex-direction: column; /* Stack columns on mobile */
+    gap: 20px;
 }
 
 .footer-logo h2 {
@@ -83,18 +103,20 @@ footer {
     font-family: 'Imperial Script', cursive;
     font-weight: normal;
     text-align: center;
-    margin-left: 500px;
+    margin-left: 0; /* Remove margin on mobile */
 }
 
 .footer-links {
     display: flex;
-    gap: 40px;
-    margin-top: 10px;
+    flex-wrap: wrap; /* Wrap columns on mobile */
+    gap: 20px;
+    justify-content: center; /* Center on mobile */
 }
 
 .footer-column {
     text-align: left;
     max-width: 200px;
+    width: 100%; /* Full width on mobile */
 }
 
 .footer-column h3 {
@@ -126,4 +148,68 @@ footer {
     margin-top: 20px;
     font-size: 12px;
     color: #555;
+    padding: 10px 0;
+}
+
+/* Media Query for Mobile Devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .logo {
+        font-size: 30px; /* Smaller logo on mobile */
+    }
+
+    .navbar {
+        height: 60px; /* Smaller navbar on mobile */
+    }
+
+    .cart-section {
+        margin-top: 80px; /* Adjust for smaller navbar */
+        padding: 10px;
+    }
+
+    .cart-section h2 {
+        font-size: 1.2rem; /* Smaller header on mobile */
+    }
+
+    .cart-item {
+        flex-direction: column; /* Stack items vertically on mobile */
+        text-align: center; /* Center text on mobile */
+    }
+
+    .item-image {
+        width: 60px; /* Smaller images on mobile */
+        height: 60px;
+    }
+
+    .item-details p {
+        font-size: 0.9rem; /* Smaller text on mobile */
+    }
+
+    .subtotal {
+        text-align: center; /* Center subtotal on mobile */
+        font-size: 1rem; /* Smaller subtotal on mobile */
+    }
+
+    .footer-logo h2 {
+        font-size: 24px; /* Smaller footer logo on mobile */
+    }
+
+    .footer-column {
+        max-width: 100%; /* Full width for each column on mobile */
+    }
+
+    .footer-links {
+        gap: 10px; /* Less gap between columns on mobile */
+    }
+
+    .footer-column h3 {
+        font-size: 14px; /* Smaller headers in footer on mobile */
+    }
+
+    .footer-column p {
+        font-size: 12px; /* Smaller text in footer on mobile */
+    }
+
+    .footer-bottom {
+        font-size: 10px; /* Smaller footer bottom text on mobile */
+    }
 }
