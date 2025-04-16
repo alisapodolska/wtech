@@ -33,20 +33,38 @@
 <header class="section1">
     <div class="container-header">
         <div class="text-box text-center">
-            <h1>Perfumes</h1>
+            <h1>The Aroma UA</h1>
         </div>
     </div>
 </header>
 
 <nav class="filter-menu">
     <ul>
-        <li class="active"><span class="icon">✖</span> All</li>
-        <li>Fragrances</li>
-        <li>Castile Soaps</li>
-        <li>Body Lotions</li>
-        <li>Gift Boxes</li>
-        <li>Mid-size Gift Sets</li>
-        <li>Gift Cards</li>
+        <li class="{{ !request('type') ? 'active' : '' }}">
+            <a href="{{ route('catalog', request()->except('type')) }}">
+                All
+            </a>
+        </li>
+        <li class="{{ request('type') == 'Eau de Parfum' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Eau de Parfum'])) }}">
+                Eau de Parfum
+            </a>
+        </li>
+        <li class="{{ request('type') == 'Eau de Toilette' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Eau de Toilette'])) }}">
+                Eau de Toilette
+            </a>
+        </li>
+        <li class="{{ request('type') == 'Body Lotions' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Body Lotions'])) }}">
+                Body Lotions
+            </a>
+        </li>
+        <li class="{{ request('type') == 'Castile Soaps' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soaps'])) }}">
+                Castile Soaps
+            </a>
+        </li>
     </ul>
 </nav>
 
@@ -54,49 +72,83 @@
     <div class="row">
         
         <div class="col-lg-3 filter-sidebar">
-            <div class="filter-container">
-                <h5>SHOW FILTERS</h5>
-                <hr>
-                <table class="filter-table">
-                    <tr>
-                        <td>
-                            <div class="filter-item">
-                                <span class="filter-circle lost-garden"></span> LOST GARDEN
-                            </div>
-                        </td>
-                        <td>
-                            <div class="filter-item">
-                                <span class="filter-circle woodland"></span> WOODLAND
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="filter-item">
-                                <span class="filter-circle grassland"></span> GRASSLAND
-                            </div>
-                        </td>
-                        <td>
-                            <div class="filter-item">
-                                <span class="filter-circle herb-garden"></span> HERB GARDEN
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="filter-item">
-                                <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
-                            </div>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-                <div class="price-section">
-                    <h6>Price (€)</h6>
-                    <input type="range" class="form-range price-range" min="0" max="150" value="150">
-                    <div class="text-end price-display">150.00</div>
+            <form method="GET" action="{{ url()->current() }}">
+                <div class="filter-container">
+                    <h5>SHOW FILTERS</h5>
+                    <hr>
+                    <table class="filter-table">
+                        <tr>
+                            <td>
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
+                                            {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                    <span class="filter-circle lost-garden"></span> LOST GARDEN
+                                </label>
+                            </td>
+                            <td>
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
+                                            {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                    <span class="filter-circle woodland"></span> WOODLAND
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
+                                            {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                    <span class="filter-circle grassland"></span> GRASSLAND
+                                </label>
+                            </td>
+                            <td>
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
+                                            {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                    <span class="filter-circle herb-garden"></span> HERB GARDEN
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
+                                            {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
+                                    <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
+                                </label>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div class="price-section mt-3">
+                        <h6>Price (€)</h6>
+                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
+                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
+                    </div>
+
+                    <div class="volume-section mt-3">
+                        <h6>Volume (ml)</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
+                                    {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume30">30ml</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
+                                    {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume50">50ml</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
+                                    {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume100">100ml</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-pink mt-3">Apply Filters</button>
                 </div>
-            </div>
+            </form>
         </div>
 
         
@@ -113,51 +165,83 @@
                     <table class="filter-table">
                         <tr>
                             <td>
-                                <div class="filter-item">
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
+                                            {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
                                     <span class="filter-circle lost-garden"></span> LOST GARDEN
-                                </div>
+                                </label>
                             </td>
                             <td>
-                                <div class="filter-item">
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
+                                            {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
                                     <span class="filter-circle woodland"></span> WOODLAND
-                                </div>
+                                </label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="filter-item">
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
+                                            {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
                                     <span class="filter-circle grassland"></span> GRASSLAND
-                                </div>
+                                </label>
                             </td>
                             <td>
-                                <div class="filter-item">
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
+                                            {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
                                     <span class="filter-circle herb-garden"></span> HERB GARDEN
-                                </div>
+                                </label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="filter-item">
+                                <label class="circle-checkbox">
+                                    <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
+                                            {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
                                     <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
-                                </div>
+                                </label>
                             </td>
                             <td></td>
                         </tr>
                     </table>
-                    <div class="price-section">
+
+                    <div class="price-section mt-3">
                         <h6>Price (€)</h6>
-                        <input type="range" class="form-range price-range" min="0" max="150" value="150">
-                        <div class="text-end price-display">150.00</div>
+                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
+                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
                     </div>
+
+                    <div class="volume-section mt-3">
+                        <h6>Volume (ml)</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
+                                    {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume30">30ml</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
+                                    {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume50">50ml</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
+                                    {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="volume100">100ml</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
                 </div>
+                </form>
             </div>
 
-            
+
             <div class="product-grid">
-                
                 <div class="sort-container">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn sort-button btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Sort by Price
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="sortDropdown">
@@ -168,164 +252,33 @@
                 </div>
                 <h5 style="padding-top: 20px">Products</h5>
                 <div class="row">
-                    
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod1.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">WILD ROSE</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
+                    @foreach ($products as $product)
+                        <div class="col-12 col-md-4 mb-3 product-item">
+                            <a href="{{ route('product-desc', ['id' => $product->id]) }}" class="product-link">
+                                <div class="product-image" style="background-image: url('{{ $product['image1'] }}');"></div>
+                            </a>
+                            <div class="product-overlay">
+                                <div class="product-name">{{ $product->name }}</div>
+                                <div class="product-subtitle">{{ $product->type }}</div>
+                                <div class="product-price">€{{ $product->price }} / {{ $product->volume }}ml</div>
+                                <span class="price">{{ str_replace('€', '', $product->price) }}</span>
+                            </div>
+                            <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
                         </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod2.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">NEROLI</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod3.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">ILAUN</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€60.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod1.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">WILD ROSE</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod2.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">NEROLI</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod3.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">ILAUN</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€60.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod1.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">WILD ROSE</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod2.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">NEROLI</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod3.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">ILAUN</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€60.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod1.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">WILD ROSE</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod2.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">NEROLI</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€130.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 product-item">
-                        <a href="{{ route('product-desc') }}" class="product-link">
-                            <div class="product-image" style="background-image: url('../../../public/static/img/prod3.jpg');"></div>
-                        </a>
-                        <div class="product-overlay">
-                            <div class="product-name">ILAUN</div>
-                            <div class="product-subtitle">Eau de Parfum</div>
-                            <div class="product-price">€60.00 / 50ml</div>
-                            <span class="price">130.00</span>
-                        </div>
-                        <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
-                    </div>
+                    @endforeach
                 </div>
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
+                                <span aria-hidden="true">«</span>
                             </a>
                         </li>
                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="true">»</span>
                             </a>
                         </li>
                     </ul>

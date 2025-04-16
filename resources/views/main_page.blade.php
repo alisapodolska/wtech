@@ -57,7 +57,7 @@
     <section class="products">
         <div class="container">
             <div class="left-section">
-                <a href="{{ route('product-desc') }}" class="product-link">
+                <a href="{{ route('product-desc', ['id' => 1]) }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-spray-can fa-3x"></i>
                         <h3>PERFUME BODY LOTIONS</h3>
@@ -65,7 +65,7 @@
                         <p class="price">€28.00</p>
                     </div>
                 </a>
-                <a href="{{ route('product-desc') }}" class="product-link">
+                <a href="{{ route('product-desc', ['id' => 1]) }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-soap fa-3x"></i>
                         <h3>ORGANIC CASTILE SOAP</h3>
@@ -75,7 +75,7 @@
                 </a>
             </div>
             <div class="right-section">
-                <a href="{{ route('product-desc') }}" class="product-link">
+                <a href="{{ route('product-desc', ['id' => 1]) }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-spray-can fa-3x"></i>
                         <h3>PERFUME BODY LOTIONS</h3>
@@ -83,7 +83,7 @@
                         <p class="price">€28.00</p>
                     </div>
                 </a>
-                <a href="{{ route('product-desc') }}" class="product-link">
+                <a href="{{ route('product-desc', ['id' => 1]) }}" class="product-link">
                     <div class="product">
                         <i class="fas fa-soap fa-3x"></i>
                         <h3>ORGANIC CASTILE SOAP</h3>

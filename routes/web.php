@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('main_page');
 });
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
+Route::get('/catalog', [ProductController::class, 'index'])->name('catalog');
 
 Route::get('/about-us', function () {
     return view('aboutUs');
@@ -33,9 +32,7 @@ Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
 
-Route::get('/product-desc', function () {
-    return view('product-desc');
-})->name('product-desc');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product-desc');
 
 Route::get('/test', function () {
     return view('test');

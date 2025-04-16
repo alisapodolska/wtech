@@ -31,13 +31,25 @@
     </div>
 </nav>
 
-<div class="product-container">
+
+@php
+    $typeClassMap = [
+        'ATLANTIC COAST' => 'type1',
+        'GRASSLAND' => 'type2',
+        'HERB GARDEN' => 'type3',
+        'LOST GARDEN' => 'type4',
+        'WOODLAND' => 'type5',
+    ];
+    $bgClass = $typeClassMap[$product->scent] ?? 'type1';
+@endphp
+
+<div class="product-container {{ $bgClass }}">
     <div class="content">
         <div class="row">
             <div class="col-md-4 price" style="margin-top: 70px">
-                <h3 class="product-name">Wild Rose</h3>
-                <p class="product-volume">Eau de Parfum / 50ml</p>
-                <h4 class="product-price">€130.00</h4>
+                <h3 class="product-name">{{ $product->name }}</h3>
+                <p class="product-volume">{{ $product->type }} / {{ $product->volume }}ml</p>
+                <h4 class="product-price">€{{ $product->price }}</h4>
                 <label for="quantity" class="quantity-label">Quantity</label>
                 <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1">
                 <button class="btn add-to-bag-btn mt-3">ADD TO BAG</button>
@@ -48,12 +60,12 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="img-container">
-                                <img src="../../../public/static/img/prod1.jpg" class="product-img" alt="Wild Rose Box">
+                                <img src="{{ asset($product->image1) }}" class="product-img" alt="{{ $product->name }}">
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="img-container">
-                                <img src="../../../public/static/img/prod1_1.jpg" class="product-img" alt="Wild Rose Angle 2">
+                                <img src="{{ asset($product->image2) }}" class="product-img" alt="{{ $product->name }}">
                             </div>
                         </div>
                     </div>
@@ -74,22 +86,9 @@
                     <a href="#" class="tab-link inactive" data-tab="ingredients">Ingredients</a>
                 </div>
 
-                <p class="tab-content description active">
-                    We imagine daybreak in the Burren: the fresh delicacy of the Burnet Rose is slowly warmed by the rising sun,
-                    revealing a soft rose petal heart grounded in fragrant Honey and Sandalwood notes.
-                </p>
-                <p class="tab-content description active">
-                    Wild Rose opens at dawn with the sparkling notes of Pink Grapefruit and Bergamot, heralding the precious Grasse Rose
-                    Centifolia - natural, delicate, velvety. As low sunlight warms the rose, the soft honey notes of Rosa Damascena blend
-                    with the sensuous warm notes of Sandalwood, smooth Benzoin, Beeswax and a hint of Gaicwood is brushed by the green
-                    freshness of Angelica. The fragile, rare touch of natural Ambrette Seed brings richness to the perfume but remains
-                    discreet and delicate.
-                </p>
+                <p class="tab-content description">{{ $product->description }}</p>
+                <p class="tab-content ingredients" style="display: none;">{{ $product->ingredients }}</p>
 
-                <p class="tab-content ingredients" style="display: none;">
-                    Alcohol Denat.,Parfum, Aqua, Benzyl Alcohol, Benzyl Benzoate, Citral, Citronellol,
-                    Eugenol, Farnesol, Geraniol, Hexyl Cinnamal, Isoeugenol, Linalool, Limonene. Allergens listed in italics.
-                </p>
                 <p><strong>COSMOS Natural Certified:</strong> 100% natural ingredients, 77% organic of total.</p>
             </div>
         </div>
@@ -98,41 +97,26 @@
 
 <section class="scent-family-section">
     <div class="scent-description">
-        <h2>More from
-            the Scent Family</h2>
-        <p> Lost Garden </p>
+        <h2>More from the Scent Family</h2>
+        <p>{{ $product->scent }}</p>
     </div>
 
-    <div class="scent-container">
-        <div class="col-12 col-md-4 mb-3 product-item">
-            <div class="product-image" style="background-image: url('../../../public/static/img/prod1.jpg');"></div>
-            <div class="product-overlay">
-                <div class="product-name">WILD ROSE</div>
-                <div class="product-subtitle">Eau de Parfum</div>
-                <div class="product-price">€130.00 / 50ml</div>
-                <span class="price">130.00</span>
-            </div>
-            <button class="add-to-bag" onclick="window.location.href='cart.html'">Add to Bag</button>
-        </div>
-        <div class="col-12 col-md-4 mb-3 product-item">
-            <div class="product-image" style="background-image: url('../../../public/static/img/prod2.jpg');"></div>
-            <div class="product-overlay">
-                <div class="product-name">NEROLI</div>
-                <div class="product-subtitle">Eau de Parfum</div>
-                <div class="product-price">€130.00 / 50ml</div>
-                <span class="price">130.00</span>
-            </div>
-            <button class="add-to-bag">Add to Bag</button>
-        </div>
-        <div class="col-12 col-md-4 mb-3 product-item">
-            <div class="product-image" style="background-image: url('../../../public/static/img/prod3.jpg');"></div>
-            <div class="product-overlay">
-                <div class="product-name">ILAUN</div>
-                <div class="product-subtitle">Eau de Parfum</div>
-                <div class="product-price">€60.00 / 50ml</div>
-                <span class="price">130.00</span>
-            </div>
-            <button class="add-to-bag">Add to Bag</button>
+    <div class="container">
+        <div class="row scent-container justify-content-lg-center">
+            @foreach ($relatedProducts as $related)
+                <div class="col-12 col-md-3 mb-3 product-item">
+                    <a href="{{ route('product-desc', ['id' => $related->id]) }}">
+                        <div class="product-image" style="background-image: url('{{ asset($related->image1) }}');"></div>
+                    </a>
+                    <div class="product-overlay">
+                        <div class="product-name">{{ $related->name }}</div>
+                        <div class="product-subtitle">{{ $related->type }}</div>
+                        <div class="product-price">€{{ $related->price }} / {{ $related->volume }}ml</div>
+                        <span class="price">{{ str_replace('€', '', $related->price) }}</span>
+                    </div>
+                    <button class="add-to-bag" onclick="window.location.href='{{ route('cart') }}'">Add to Bag</button>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -163,5 +147,36 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/javascript/tabs.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".tab-link");
+        const contents = document.querySelectorAll(".tab-content");
+
+        console.log("Tabs found:", tabs.length);  // Debugging
+        console.log("Contents found:", contents.length);  // Debugging
+
+        if (tabs.length === 0 || contents.length === 0) {
+            console.error("Tabs or contents not found. Check if they exist in HTML.");
+            return;
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                // Remove "active" class from all tabs
+                tabs.forEach(t => t.classList.remove("active"));
+                this.classList.add("active");
+
+                // Hide all content
+                contents.forEach(content => content.style.display = "none");
+
+                // Show the correct content
+                const selectedTab = this.getAttribute("data-tab");
+                document.querySelectorAll(`.${selectedTab}`).forEach(content => content.style.display = "block");
+            });
+        });
+    });
+</script>
 </body>
 </html>
