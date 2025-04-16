@@ -37,3 +37,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product-d
 Route::get('/test', function () {
     return view('test');
 })->name('test');
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
