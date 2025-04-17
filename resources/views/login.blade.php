@@ -34,16 +34,18 @@
 <div class="login-container">
     <div class="form-container login">
         <h2>Login</h2>
-        <label>Your email address</label>
-        <input type="email" >
+        <form method="POST" action="{{ route('login.submit') }}">
+    @csrf
+    <label>Your email address</label>
+    <input type="email" name="email" required>
 
-        <label>Your password</label>
-        <input type="password" >
+    <label>Your password</label>
+    <input type="password" name="password" required>
 
-        <div class="button-container">
-            <button class="btn">LOGIN</button>
-            <a href="#" class="forgot-password" style="text-decoration: underline;">Forgot password?</a>
-        </div>
+    <div class="button-container">
+        <button type="submit" class="btn">LOGIN</button>
+    </div>
+</form>
     </div>
 
     
@@ -51,23 +53,37 @@
 
     
     <div class="form-container register">
-        <h2>Register</h2>
-        <label>First Name</label>
-        <input type="text">
+    <form method="POST" action="{{ route('register.submit') }}">
+    @csrf
+    <h2>Register</h2>
 
-        <label>Last Name</label>
-        <input type="text">
+    <label>First Name</label>
+    <input type="text" name="first_name" required>
 
-        <label>Your email address</label>
-        <input type="email">
+    <label>Last Name</label>
+    <input type="text" name="last_name" required>
 
-        <label>Create your password</label>
-        <input type="password">
+    <label>Your email address</label>
+    <input type="email" name="email" required>
 
-        <label>Confirm your password</label>
-        <input type="password">
+    <label>Create your password</label>
+    <input type="password" name="password" required>
 
-        <button class="btn">CREATE ACCOUNT</button>
+    <label>Confirm your password</label>
+    <input type="password" name="password_confirmation" required>
+
+    @if($errors->any())
+        <div class="text-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <button type="submit" class="btn">CREATE ACCOUNT</button>
+    </form>
     </div>
 </div>
 

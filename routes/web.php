@@ -2,19 +2,25 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('main_page');
-});
+})->name('home');
+
+Route::get('/main_page', function () {
+    return view('main_page');
+})->name('main_page'); 
+
 Route::get('/catalog', [ProductController::class, 'index'])->name('catalog');
 
 Route::get('/about-us', function () {
     return view('aboutUs');
 })->name('about-us');
 
-Route::get('/profile', function () {
-    return view('myProfile');
-})->name('profile');
+
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
 
 Route::get('/search', function () {
     return view('search');
@@ -41,3 +47,9 @@ Route::get('/test', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+

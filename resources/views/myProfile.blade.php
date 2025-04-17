@@ -46,8 +46,7 @@
 <section class="profile-info py-5">
     <div class="container">
         <div class="user-details text-center">
-            <h3 class="user-name">John Doe</h3>
-            <p class="user-email text-muted">johndoe@example.com</p>
+        <h3 class="user-name">{{ $user->name }}</h3>
         </div>
 
         
