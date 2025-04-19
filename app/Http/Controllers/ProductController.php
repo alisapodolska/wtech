@@ -27,8 +27,14 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->input('price'));
         }
 
-        $products = $query->get();
-        return view('catalog', compact('products'));
+        $sort = $request->query('sort', 'asc'); // Default to ascending (high to low)
+        $sort = in_array($sort, ['asc', 'desc']) ? $sort : 'asc'; // Validate sort parameter
+        $query->orderBy('price', $sort);
+
+        $products = $query->paginate(12)->appends($request->query());
+
+        // Pass sort parameter to the view
+        return view('catalog', compact('products', 'sort'));
     }
 
     public function show($id)

@@ -64,6 +64,13 @@ body {
     margin: 0 5px;
 }
 
+.cart-qty {
+    padding: 2px 4px;
+    font-size: 0.85rem;
+    max-width: 50px;
+    text-align: center;
+}
+
 .price {
     font-weight: bold;
 }

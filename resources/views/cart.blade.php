@@ -2,15 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>The Aroma UA - Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/cart-styles.css') }}">
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const debounce = (func, delay) => {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => func(...args), delay);
+            };
+        };
+
+        const updateCart = debounce(async (input) => {
+            const id = input.dataset.id;
+            let qty = parseInt(input.value);
+
+            if (isNaN(qty) || qty < 1) qty = 1;
+            if (qty > 20) qty = 20;
+            input.value = qty;
+
+            try {
+                const response = await fetch(`/cart/update/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ quantity: qty })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const item = input.closest('.cart-item');
+                    item.querySelector('.price').textContent = `€${data.newPrice}`;
+
+                    const subtotalElem = document.querySelector('.subtotal h5:last-child');
+                    if (subtotalElem) subtotalElem.textContent = `€${data.subtotal}`;
+                }
+            } catch (err) {
+                console.error('Cart update failed:', err);
+            }
+        }, 300); // debounce time (ms)
+
+        document.querySelectorAll('.cart-qty').forEach(input => {
+            input.addEventListener('input', () => updateCart(input));
+        });
+    });
+</script>
 <body>
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <header class="logo">
@@ -32,59 +77,66 @@
     </div>
 </nav>
 
-
 <section class="cart-section py-5">
     <div class="container">
         <h2>Your Cart</h2>
         <div class="cart-items">
-            
-            <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
-                <div class="d-flex align-items-center">
-                    <img src="https://i.postimg.cc/t7pNQLDB/prod1.jpg" alt="Wild Rose" class="item-image">
-                    <div class="item-details ms-3">
-                        <p class="mb-0">WILD ROSE: 60ml</p>
-                        <div class="quantity d-flex align-items-center mt-2">
-                            <span>Qty</span>
-                            <button class="btn btn-sm btn-outline-secondary mx-2">-</button>
-                            <span>1</span>
-                            <button class="btn btn-sm btn-outline-secondary mx-2">+</button>
+
+            @php
+                $cart = session('cart', []);
+                $subtotal = 0;
+            @endphp
+
+            @forelse ($cart as $id => $item)
+                @php $subtotal += $item['price'] * $item['quantity']; @endphp
+                <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="item-image">
+                        <div class="item-details ms-3">
+                            <p class="mb-0">{{ $item['name'] }}: {{ isset($item['volume']) ? $item['volume'] : 'N/A' }}ml</p>
+                            <div class="d-flex align-items-center mt-2">
+                                <label for="quantity-{{ $id }}" class="me-2">Qty</label>
+                                <input
+                                        type="number"
+                                        name="quantity"
+                                        id="quantity-{{ $id }}"
+                                        value="{{ $item['quantity'] }}"
+                                        min="1"
+                                        class="form-control form-control-sm w-auto me-2 cart-qty"
+                                        data-id="{{ $id }}"
+                                >
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <p class="price mb-0">€130.00</p>
-                    <button class="btn btn-sm btn-outline-secondary ms-3">×</button>
-                </div>
-            </div>
-            
-            <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
-                <div class="d-flex align-items-center">
-                    <img src="https://i.postimg.cc/JHrNNktf/prod2.jpg" alt="Neroli" class="item-image">
-                    <div class="item-details ms-3">
-                        <p class="mb-0">NEROLI: 60ml</p>
-                        <div class="quantity d-flex align-items-center mt-2">
-                            <span>Qty</span>
-                            <button class="btn btn-sm btn-outline-secondary mx-2">-</button>
-                            <span>1</span>
-                            <button class="btn btn-sm btn-outline-secondary mx-2">+</button>
-                        </div>
+
+                    <div class="d-flex align-items-center">
+                        <p class="price mb-0 me-3">€{{ number_format($item['price'] * $item['quantity'], 2) }}</p>
+
+                        <!-- Remove item -->
+                        <form method="POST" action="{{ route('cart.remove', ['id' => $id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove item">
+                                &times;
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <p class="price mb-0">€130.00</p>
-                    <button class="btn btn-sm btn-outline-secondary ms-3">×</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="subtotal d-flex justify-content-between py-3">
-            <h5>Subtotal</h5>
-            <h5>€260.00</h5> 
+            @empty
+                <p>Your cart is empty.</p>
+            @endforelse
         </div>
 
-        <div class="cart-actions d-flex justify-content-between">
+        @if ($subtotal > 0)
+            <div class="subtotal d-flex justify-content-between py-3">
+                <h5>Subtotal</h5>
+                <h5>€{{ number_format($subtotal, 2) }}</h5>
+            </div>
+        @endif
+
+        <div class="cart-actions d-flex justify-content-between mt-4">
             <a class="btn btn-outline-secondary custom-btn" href="{{ route('catalog') }}">Continue Shopping</a>
-            <button class="btn btn-secondary custom-btn">Checkout</button>
+            <a class="btn btn-secondary custom-btn" href="{{ route('checkout') }}">Checkout</a>
         </div>
     </div>
 </section>

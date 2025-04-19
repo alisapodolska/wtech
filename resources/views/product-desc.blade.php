@@ -52,7 +52,14 @@
                 <h4 class="product-price">€{{ $product->price }}</h4>
                 <label for="quantity" class="quantity-label">Quantity</label>
                 <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1">
-                <button class="btn add-to-bag-btn mt-3">ADD TO BAG</button>
+                <button
+                        class="btn add-to-bag-btn mt-3"
+                        data-id="{{ $product->id }}"
+                        data-url="{{ route('cart.add', $product->id) }}"
+                        data-token="{{ csrf_token() }}"
+                >
+                    ADD TO BAG
+                </button>
             </div>
 
             <div class="col-md-4 img">
@@ -114,7 +121,11 @@
                         <div class="product-price">€{{ $related->price }} / {{ $related->volume }}ml</div>
                         <span class="price">{{ str_replace('€', '', $related->price) }}</span>
                     </div>
-                    <button class="add-to-bag" onclick="window.location.href='{{ route('cart') }}'">Add to Bag</button>
+                    <form method="POST" action="{{ route('cart.add', $related->id) }}" class="add-to-bag-form">
+                        @csrf
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add-to-bag">Add to Bag</button>
+                    </form>
                 </div>
             @endforeach
         </div>
@@ -144,6 +155,8 @@
         <p>© The Aroma UA 2025<br>All rights reserved.</p>
     </div>
 </footer>
+
+<div id="cart-toast" class="cart-toast" style="display: none;"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/javascript/tabs.js" defer></script>
@@ -176,6 +189,54 @@
                 document.querySelectorAll(`.${selectedTab}`).forEach(content => content.style.display = "block");
             });
         });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const addToBagBtn = document.querySelector('.add-to-bag-btn');
+
+        if (addToBagBtn) {
+            addToBagBtn.addEventListener('click', async () => {
+                const productId = addToBagBtn.dataset.id;
+                const url = addToBagBtn.dataset.url;
+                const token = addToBagBtn.dataset.token;
+                const quantity = parseInt(document.getElementById('quantity')?.value || 1);
+
+                try {
+                    const formData = new FormData();
+                    formData.append('quantity', quantity);
+
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': token,
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) throw new Error("Error adding to bag.");
+
+                    const data = await response.json();
+                    showToast(data.message || 'Added to bag!');
+                } catch (err) {
+                    console.error(err);
+                    showToast('Failed to add product to cart.', true);
+                }
+            });
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('cart-toast');
+            toast.textContent = message;
+            toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+            toast.style.display = 'block';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
     });
 </script>
 </body>

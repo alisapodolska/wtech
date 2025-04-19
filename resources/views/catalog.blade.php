@@ -245,8 +245,8 @@
                             Sort by Price
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <li><a class="dropdown-item" href="#" data-sort="asc">high to low</a></li>
-                            <li><a class="dropdown-item" href="#" data-sort="desc">low to high</a></li>
+                            <li><a class="dropdown-item {{ $sort == 'desc' ? 'active' : '' }}" href="{{ route('catalog', array_merge(request()->query(), ['sort' => 'asc'])) }}">Low to High</a></li>
+                            <li><a class="dropdown-item {{ $sort == 'asc' ? 'active' : '' }}" href="{{ route('catalog', array_merge(request()->query(), ['sort' => 'desc'])) }}">High to Low</a></li>
                         </ul>
                     </div>
                 </div>
@@ -263,25 +263,16 @@
                                 <div class="product-price">€{{ $product->price }} / {{ $product->volume }}ml</div>
                                 <span class="price">{{ str_replace('€', '', $product->price) }}</span>
                             </div>
-                            <a class="add-to-bag" href="{{ route('cart') }}">Add to Bag</a>
+                            <form method="POST" action="{{ route('cart.add', $product->id) }}" class="add-to-bag-form">
+                                @csrf
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="add-to-bag">Add to Bag</button>
+                            </form>
                         </div>
                     @endforeach
                 </div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                    </ul>
+                <nav role="navigation" aria-label="Pagination Navigation" class="custom-pagination">
+                    {{ $products->links() }}
                 </nav>
             </div>
         </div>
@@ -316,6 +307,49 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
+<div id="cart-toast" class="cart-toast">Product added to cart!</div>
+
+<script>
+    document.querySelectorAll('.add-to-bag-form').forEach(form => {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const action = form.getAttribute('action');
+            const token = form.querySelector('input[name="_token"]').value;
+
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json',
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Something went wrong');
+
+                const data = await response.json();
+                showToast(data.message); // 👈 replace alert
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Could not add product to cart.', true);
+            }
+        });
+    });
+
+    function showToast(message, isError = false) {
+        const toast = document.getElementById('cart-toast');
+        toast.textContent = message;
+        toast.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 2500);
+    }
+</script>
 <script>
     document.querySelectorAll('.price-range').forEach(slider => {
         slider.addEventListener('input', function() {
