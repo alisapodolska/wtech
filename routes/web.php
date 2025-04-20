@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/', function () {
     return view('main_page');
@@ -46,9 +47,16 @@ Route::get('/test', function () {
     return view('test');
 })->name('test');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
+
+Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+
+Route::post('/checkout/submit', [CheckoutController::class, 'store'])->name('checkout.submit');
+
+
+Route::post('/checkout/confirm', [CheckoutController::class, 'confirmPayment'])->name('checkout.confirm');
+
+
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 

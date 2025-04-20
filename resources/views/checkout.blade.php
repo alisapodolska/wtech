@@ -32,6 +32,8 @@
     </nav>
 
     <!-- Checkout Section -->
+    <form method="POST" action="{{ route('checkout.confirm') }}" id="checkout-form">
+    @csrf
     <section class="checkout-section py-5">
         <div class="container">
             <div class="row">
@@ -43,37 +45,46 @@
                     <form>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="First name *" required>
+                                <input type="text" class="form-control" placeholder="First name *"  name="first_name" required>
+
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name *" required>
+                                <input type="text" class="form-control" placeholder="Last name *" name="last_name" required>
+
                             </div>
                         </div>
                         <div class="mb-3">
-                            <select class="form-control" required>
+                            <select class="form-control" name="country" required>
+
                                 <option value="Slovakia (EUR €)">Slovakia (EUR €)</option>
                                 <!-- Add more options as needed -->
                             </select>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Address *" required>
+                            <input type="text" class="form-control" placeholder="Address *" name="address"  required>
+
                         </div>
         
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="City *" required>
+                                <input type="text" class="form-control" placeholder="City *" name="city" required>
+   
+
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="State">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Postal or zip code *" required>
+                                <input type="text" class="form-control" placeholder="Postal or zip code *" name="zip" required>
+ 
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="input-group">
-                                <select class="form-control phone-code" required>
+                                <select class="form-control phone-code" name="phone"required>
+
                                     <option value="+421">+421</option>
+                                    
                                     <!-- Add more country codes as needed -->
                                 </select>
                                 <input type="tel" class="form-control" placeholder="Phone *" required>
@@ -88,22 +99,30 @@
                     <div class="summary-card p-4">
                         <h3 class="d-flex justify-content-between align-items-center">
                             <span>Summary</span>
-                            <a href="#" class="cancel-link">Cancel</a>
+                            <!-- <a href="#" class="cancel-link">Cancel</a> -->
                         </h3>
+                        @foreach($cartItems as $item)
+
                         <div class="cart-item d-flex align-items-center border-bottom py-3">
-                            <img src="https://via.placeholder.com/50" alt="Miu Miu" class="item-image me-3">
+                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="item-image me-3">
                             <div class="flex-grow-1">
-                                <p class="mb-0">Miu Miu</p>
+                                <p class="mb-0">{{ $item['name'] }}</p>
                             </div>
-                            <p class="mb-0">3,800.00 €</p>
+                            <p class="mb-0">{{ $item['quantity'] }} x {{ $item['price'] }}€</p>
                         </div>
+                        @endforeach
+
+
+
+
+
                         <div class="d-flex justify-content-between py-2">
                             <p class="mb-0">Delivery</p>
                             <p class="mb-0">12.00 €</p>
                         </div>
                         <div class="d-flex justify-content-between py-2 font-weight-bold">
                             <h5>Total</h5>
-                            <h5 id="total-amount">EUR 3,812.00 €</h5>
+                            <h5 id="total-amount">{{ number_format($totalAmount, 2) }}€</h5>
                         </div>
                        
                        
@@ -114,47 +133,68 @@
             </div>
 
             <!-- Payment Section -->
+
             <div class="row mt-5">
-                <div class="col-12">
-                    <h3>Payment</h3>
-                    <p class="text-muted">Select your payment method</p>
-                    <div class="payment-methods d-flex flex-wrap gap-3 mb-4">
-                        <button class="btn btn-outline-secondary payment-btn" data-method="paypal">
-                            <span class="check-box"></span>
-                            PayPal
-                        </button>
-                        <button class="btn btn-outline-secondary payment-btn" data-method="card">
-                            <span class="check-box"></span>
-                            Debit or credit card
-                        </button>
-                        <button class="btn btn-outline-secondary payment-btn" data-method="crypto">
-                            <span class="check-box"></span>
-                            Cash after delivery
-                        </button>
-                    </div>
-                    <div class="card-details" style="display: none;">
-                        <h4>Card Details</h4>
-                        <p class="text-muted required-text">*Required fields</p>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Cardholder name *" required>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Card number *" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="text" class="form-control" placeholder="Expiration date * (MM/YY)" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Security code *" required>
-                        </div>
-                    </div>
-                    <p id="crypto-fee" class="text-muted" style="display: none;">+5 euro to curier</p>
-                    <button class="btn btn-dark w-100 mt-3" id="confirm-payment">Confirm Payment Method</button>
+    <div class="col-12">
+        <h3>Payment</h3>
+        <p class="text-muted">Select your payment method</p>
+        <div class="payment-methods d-flex flex-wrap gap-3 mb-4">
+            <button class="btn btn-outline-secondary payment-btn" data-method="paypal">
+                <span class="check-box"></span>
+                PayPal
+            </button>
+            <button class="btn btn-outline-secondary payment-btn" data-method="card">
+                <span class="check-box"></span>
+                Debit or credit card
+            </button>
+            <button class="btn btn-outline-secondary payment-btn" data-method="crypto">
+                <span class="check-box"></span>
+                Cash after delivery
+            </button>
+        </div>
+
+        <!-- Card details section (hidden by default) -->
+        <div class="card-details" style="display: none;">
+            <h4>Card Details</h4>
+            <p class="text-muted required-text">*Required fields</p>
+            <div class="mb-3">
+                <input type="text" class="form-control {{ $errors->has('card_name') ? 'is-invalid' : '' }}" 
+                       placeholder="Cardholder name *" name="card_name" value="{{ old('card_name') }}" required>
+                @error('card_name')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="text" class="form-control {{ $errors->has('card_number') ? 'is-invalid' : '' }}" 
+                           placeholder="Card number *" name="card_number" value="{{ old('card_number') }}" required>
+                    @error('card_number')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control {{ $errors->has('card_expiry') ? 'is-invalid' : '' }}" 
+                           placeholder="Expiration date * (MM/YY)" name="card_expiry" value="{{ old('card_expiry') }}" required>
+                    @error('card_expiry')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
+            <div class="mb-3">
+                <input type="text" class="form-control {{ $errors->has('card_cvv') ? 'is-invalid' : '' }}" 
+                       placeholder="Security code *" name="card_cvv" value="{{ old('card_cvv') }}" required>
+                @error('card_cvv')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
+
+        <!-- Crypto fee text -->
+        <p id="crypto-fee" class="text-muted" style="display: none;">+5 euro to curier</p>
+
+        <button id="confirmPaymentBtn" class="btn btn-dark w-100 mt-3" id="confirm-payment">Confirm Payment Method</button>
+    </div>
+</div>
     </section>
 
     <!-- Footer (unchanged) -->
@@ -192,12 +232,14 @@
         const placeOrderBtn = document.getElementById('place-order');
         const successMessage = document.getElementById('success-message');
         let selectedMethod = null;
-        let baseTotal = 3812.00; // Base total from the summary
+        let baseTotal = {{ number_format($totalAmount, 2, '.', '') }};
 
-        paymentButtons.forEach(button => {
+            paymentButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent any default button behavior
-                const method = button.getAttribute('data-method');
+            e.preventDefault();
+            const method = button.getAttribute('data-method');
+           // document.getElementById('payment_method').value = method;
+                
 
                 if (button.classList.contains('selected')) {
                     // If the button is already selected, deselect it
@@ -242,21 +284,38 @@
             }
         });
 
-        // Handle confirm payment button click
-        document.getElementById('confirm-payment').addEventListener('click', () => {
-            if (selectedMethod === 'paypal') {
-                // Redirect to PayPal if PayPal is selected
-                window.location.href = 'https://www.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=EC-75P67595JC219753E';
-            } else if (selectedMethod === 'card') {
-                // For now, just alert (future implementation could process card details)
-                alert('Card payment processing is not implemented yet.');
-            } else if (selectedMethod === 'crypto') {
-                alert('Cryptocurrency payment is not implemented yet.');
-            } else {
-                // Alert if no payment method is selected
-                alert('Please select a payment method.');
-            }
-        });
     </script>
+<script>
+// Handle payment method selection
+document.querySelectorAll('.payment-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const selectedMethod = this.getAttribute('data-method');
+        
+        // Hide all payment method details initially
+        document.querySelector('.card-details').style.display = 'none';
+        document.getElementById('crypto-fee').style.display = 'none';
+        
+        // Show relevant details based on the selected method
+        if (selectedMethod === 'card') {
+            document.querySelector('.card-details').style.display = 'block';
+        } else if (selectedMethod === 'crypto') {
+            document.getElementById('crypto-fee').style.display = 'block';
+        }
+    });
+});
+
+
+document.getElementById('confirmPaymentBtn').addEventListener('click', function(event) {
+    const paymentMethod = document.querySelector('.payment-btn.selected');  
+    if (paymentMethod && paymentMethod.getAttribute('data-method') === 'crypto') {
+        event.preventDefault();
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' 
+        });
+    }
+});
+</script>
 </body>
 </html>

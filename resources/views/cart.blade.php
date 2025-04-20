@@ -134,10 +134,14 @@
             </div>
         @endif
 
-        <div class="cart-actions d-flex justify-content-between mt-4">
-            <a class="btn btn-outline-secondary custom-btn" href="{{ route('catalog') }}">Continue Shopping</a>
-            <a class="btn btn-secondary custom-btn" href="{{ route('checkout') }}">Checkout</a>
+        <form method="POST" action="{{ route('checkout') }}">
+        @csrf
+        <div class="d-flex justify-content-between mb-5">
+        <a href="{{ route('catalog') }}" class="btn btn-outline-secondary">Continue Shopping</a>
+        <input type="hidden" name="subtotal" value="{{ number_format($subtotal, 2) }}">
+        <button type="submit" class="btn btn-secondary custom-btn">Checkout</button>
         </div>
+    </form>
     </div>
 </section>
 
