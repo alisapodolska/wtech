@@ -90,10 +90,6 @@ class CheckoutController extends Controller
     {
         \Log::info('Received order request with data:', $request->all());
 
-        if (!auth()->check()) {
-            return response()->json(['success' => false, 'message' => 'User must be logged in to place an order']);
-        }
-
         $cart = session()->get('cart', []);
         if (empty($cart)) {
             return response()->json(['success' => false, 'message' => 'Cart is empty']);
@@ -108,7 +104,7 @@ class CheckoutController extends Controller
 
             // Create the order
             $order = Order::create([
-                'user_id' => auth()->id(),
+                'user_id' => auth()->check() ? auth()->id() : null,
                 'date' => now(),
                 'status' => 'pending',
                 'total_price' => number_format($totalPrice, 2, '.', ''),

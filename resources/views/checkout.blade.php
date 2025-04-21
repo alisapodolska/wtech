@@ -44,12 +44,10 @@
                     <p class="text-muted">Add your delivery address</p>
                     <p class="required-text">*Required fields</p>
                     <div class="mb-3">
-                        <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
-                        <input type="hidden" name="customer_name" value="{{ auth()->user()->name }}">
+                        <input type="text" class="form-control" name="customer_name" placeholder="Full Name *" required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
-                        <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                        <input type="email" class="form-control" name="email" placeholder="Email *" required>
                     </div>
                     <div class="mb-3">
                         <select class="form-control" name="country" required>
