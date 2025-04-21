@@ -49,17 +49,21 @@ Route::get('/test', function () {
 
 
 Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::post('/checkout/submit', [CheckoutController::class, 'store'])->name('checkout.submit');
 
 
 Route::post('/checkout/confirm', [CheckoutController::class, 'confirmPayment'])->name('checkout.confirm');
 
-
+Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+//Route::get('/profile', [CheckoutController::class, 'getOrderHistory'])->name('profile');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+// Add logout route
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

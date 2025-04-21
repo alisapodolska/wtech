@@ -1,10 +1,9 @@
 body {
     font-family: 'Arial', sans-serif;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; 
+    background-color: #ffffff;
+    min-height: 100vh; /* Ensure body takes at least the viewport height */
 }
 
 .logo {
@@ -20,6 +19,9 @@ body {
     z-index: 1000;
 }
 
+.container.mt-4 {
+    padding-top: 80px; /* Adjust based on your navbar height */
+}
 
 .profile-header {
     margin-top: 75px;
