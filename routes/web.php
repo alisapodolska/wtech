@@ -24,9 +24,8 @@ Route::get('/about-us', function () {
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
 
-Route::get('/search', function () {
-    return view('search');
-})->name('search');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/live-search', [ProductController::class, 'search_live'])->name('product.search');
 
 Route::get('/login', function () {
     return view('login');
