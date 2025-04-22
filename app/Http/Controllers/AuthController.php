@@ -15,6 +15,12 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            
+            // Check if user is admin
+            if (Auth::user()->email === 'admin@gmail.com' && $request->password === 'admin1') {
+                return redirect()->route('admin');
+            }
+            
             return redirect()->route('profile'); 
         }
     

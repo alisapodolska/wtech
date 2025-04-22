@@ -25,7 +25,12 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('search') }}">Search</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link" style="color: inherit; text-decoration: none;">Logout</button>
+                    </form>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">Bag</a></li>
             </ul>
         </div>
@@ -38,7 +43,6 @@
         <h2 class="admin-title">Admin</h2>
         <div class="admin-actions">
             <button class="btn btn-outline-primary me-2">+ Add Product</button>
-            <button class="btn btn-outline-danger">Log Out</button>
         </div>
     </div>
 </section>

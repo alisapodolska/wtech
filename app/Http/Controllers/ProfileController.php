@@ -11,6 +11,12 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
+        
+        // Check if user is admin
+        if ($user->email === 'admin@gmail.com') {
+            return redirect()->route('admin');
+        }
+        
         $orders = Order::with(['orderInfo', 'orderItems.product'])
             ->where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
