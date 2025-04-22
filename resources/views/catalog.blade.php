@@ -55,13 +55,13 @@
                 Eau de Toilette
             </a>
         </li>
-        <li class="{{ request('type') == 'Body Lotions' ? 'active' : '' }}">
-            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Body Lotions'])) }}">
+        <li class="{{ request('type') == 'Body Lotion' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Body Lotion'])) }}">
                 Body Lotions
             </a>
         </li>
-        <li class="{{ request('type') == 'Castile Soaps' ? 'active' : '' }}">
-            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soaps'])) }}">
+        <li class="{{ request('type') == 'Castile Soap' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soap'])) }}">
                 Castile Soaps
             </a>
         </li>

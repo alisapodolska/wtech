@@ -23,4 +23,6 @@ class Product extends Model
         'image2',
         'scent'
     ];
+
+    public $timestamps = false;
 }
