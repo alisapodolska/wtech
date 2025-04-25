@@ -55,8 +55,8 @@
                 Eau de Toilette
             </a>
         </li>
-        <li class="{{ request('type') == 'Body Lotion' ? 'active' : '' }}">
-            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Body Lotion'])) }}">
+        <li class="{{ request('type') == 'Body Lotions' ? 'active' : '' }}">
+            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Body Lotions'])) }}">
                 Body Lotions
             </a>
         </li>
