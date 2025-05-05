@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <header class="logo">
-            <a class="navbar-brand" href="main_page.blade.php">The Aroma UA</a>
+            <a class="navbar-brand" href="{{ route('main_page') }}">The Aroma UA</a>
         </header>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

@@ -24,10 +24,15 @@ class ProductController extends Controller
             $query->where('type', $request->input('type'));
         }
 
-        if ($request->has('price')) {
-            $query->where('price', '<=', $request->input('price'));
+        if ($request->has('min_price') || $request->has('max_price')) {
+            $min = max(0, (int) $request->input('min_price', 0)); // Ensure min is not negative
+            $max = min(150, (int) $request->input('max_price', 150)); // Cap max at 150
+            // Ensure min is not greater than max
+            if ($min > $max) {
+                [$min, $max] = [$max, $min]; // Swap values if needed
+            }
+            $query->whereBetween('price', [$min, $max]);
         }
-
         $sort = $request->query('sort', 'asc'); // Default to ascending (high to low)
         $sort = in_array($sort, ['asc', 'desc']) ? $sort : 'asc'; // Validate sort parameter
         $query->orderBy('price', $sort);
@@ -58,8 +63,10 @@ class ProductController extends Controller
             $query->where('type', $request->input('type'));
         }
 
-        if ($request->has('price')) {
-            $query->where('price', '<=', $request->input('price'));
+        if ($request->has('min_price') || $request->has('max_price')) {
+            $min = $request->input('min_price', 0);
+            $max = $request->input('max_price', 150);
+            $query->whereBetween('price', [$min, $max]);
         }
 
         $sort = $request->query('sort', 'asc'); // Default to ascending (high to low)

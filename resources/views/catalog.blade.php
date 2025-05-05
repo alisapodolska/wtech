@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <header class="logo">
-            <a class="navbar-brand" href="main_page.blade.php">The Aroma UA</a>
+            <a class="navbar-brand" href="{{ route('main_page') }}">The Aroma UA</a>
         </header>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -60,11 +60,11 @@
                 Body Lotions
             </a>
         </li>
-        <li class="{{ request('type') == 'Castile Soap' ? 'active' : '' }}">
-            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soap'])) }}">
-                Castile Soaps
-            </a>
-        </li>
+{{--        <li class="{{ request('type') == 'Castile Soap' ? 'active' : '' }}">--}}
+{{--            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soap'])) }}">--}}
+{{--                Castile Soaps--}}
+{{--            </a>--}}
+{{--        </li>--}}
     </ul>
 </nav>
 
@@ -122,9 +122,21 @@
                     </table>
 
                     <div class="price-section mt-3">
-                        <h6>Price (€)</h6>
-                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
-                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
+                        <h6>Price Range (€)</h6>
+                        <div class="d-flex gap-3">
+                            <!-- Minimum Price Slider -->
+                            <div class="w-50">
+                                <label for="min_price">Min Price</label>
+                                <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
+                                <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                            </div>
+                            <!-- Maximum Price Slider -->
+                            <div class="w-50">
+                                <label for="max_price">Max Price</label>
+                                <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
+                                <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="volume-section mt-3">
@@ -208,9 +220,21 @@
                     </table>
 
                     <div class="price-section mt-3">
-                        <h6>Price (€)</h6>
-                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
-                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
+                        <h6>Price Range (€)</h6>
+                        <div class="d-flex gap-3">
+                            <!-- Minimum Price Slider -->
+                            <div class="w-50">
+                                <label for="min_price">Min Price</label>
+                                <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
+                                <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                            </div>
+                            <!-- Maximum Price Slider -->
+                            <div class="w-50">
+                                <label for="max_price">Max Price</label>
+                                <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
+                                <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="volume-section mt-3">
@@ -351,9 +375,38 @@
     }
 </script>
 <script>
-    document.querySelectorAll('.price-range').forEach(slider => {
-        slider.addEventListener('input', function() {
-            this.nextElementSibling.textContent = this.value + '.00';
+    document.addEventListener('DOMContentLoaded', function () {
+        const minPriceSlider = document.getElementById('min_price');
+        const maxPriceSlider = document.getElementById('max_price');
+        const minPriceDisplay = document.querySelector('.min-price-display');
+        const maxPriceDisplay = document.querySelector('.max-price-display');
+
+        // Update display when min price changes
+        minPriceSlider.addEventListener('input', function () {
+            let minValue = parseInt(this.value);
+            let maxValue = parseInt(maxPriceSlider.value);
+
+            // Prevent min price from exceeding max price
+            if (minValue > maxValue) {
+                minValue = maxValue;
+                this.value = minValue;
+            }
+
+            minPriceDisplay.textContent = minValue + '.00';
+        });
+
+        // Update display when max price changes
+        maxPriceSlider.addEventListener('input', function () {
+            let maxValue = parseInt(this.value);
+            let minValue = parseInt(minPriceSlider.value);
+
+            // Prevent max price from being less than min price
+            if (maxValue < minValue) {
+                maxValue = minValue;
+                this.value = maxValue;
+            }
+
+            maxPriceDisplay.textContent = maxValue + '.00';
         });
     });
 </script>
