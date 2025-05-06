@@ -10,7 +10,6 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        //testing commit
         $query = Product::query();
 
         if ($request->has('volume')) {
