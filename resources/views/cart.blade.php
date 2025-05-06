@@ -81,9 +81,7 @@
     <div class="container">
         <h2>Your Cart</h2>
         <div class="cart-items">
-
             @php
-                $cart = session('cart', []);
                 $subtotal = 0;
             @endphp
 
@@ -117,7 +115,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove item">
-                                &times;
+                                ×
                             </button>
                         </form>
                     </div>
@@ -135,11 +133,24 @@
         @endif
 
         <form method="POST" action="{{ route('checkout') }}">
+            @csrf
+            <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+            @foreach ($cart as $id => $item)
+                <input type="hidden" name="cart[{{ $id }}][name]" value="{{ $item['name'] }}">
+                <input type="hidden" name="cart[{{ $id }}][price]" value="{{ $item['price'] }}">
+                <input type="hidden" name="cart[{{ $id }}][quantity]" value="{{ $item['quantity'] }}">
+                <input type="hidden" name="cart[{{ $id }}][image]" value="{{ $item['image'] }}">
+                <input type="hidden" name="cart[{{ $id }}][volume]" value="{{ isset($item['volume']) ? $item['volume'] : 'N/A' }}">
+            @endforeach
+            <div class="d-flex justify-content-between mb-5">
+                <button type="submit" class="btn btn-secondary custom-btn">Proceed to Checkout</button>
+            </div>
+        </form>
         @csrf
         <div class="d-flex justify-content-between mb-5">
         <a href="{{ route('catalog') }}" class="btn btn-outline-secondary">Continue Shopping</a>
         <input type="hidden" name="subtotal" value="{{ number_format($subtotal, 2) }}">
-        <button type="submit" class="btn btn-secondary custom-btn">Checkout</button>
+{{--        <button type="submit" class="btn btn-secondary custom-btn">Checkout</button>--}}
         </div>
     </form>
     </div>

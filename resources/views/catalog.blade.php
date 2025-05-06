@@ -352,12 +352,20 @@
                     body: formData
                 });
 
-                if (!response.ok) throw new Error('Something went wrong');
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`HTTP error! Status: ${response.status}`, { cause: { response, errorData } });
+                }
 
                 const data = await response.json();
-                showToast(data.message); // 👈 replace alert
+                showToast(data.message);
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error adding product to cart:', {
+                    message: error.message,
+                    status: error.cause?.response?.status,
+                    statusText: error.cause?.response?.statusText,
+                    responseData: error.cause?.errorData || null
+                });
                 showToast('Could not add product to cart.', true);
             }
         });
@@ -371,7 +379,7 @@
 
         setTimeout(() => {
             toast.style.display = 'none';
-        }, 2500);
+        }, 2000);
     }
 </script>
 <script>

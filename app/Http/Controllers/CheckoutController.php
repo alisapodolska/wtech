@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\OrderItem; // убедитесь, что такая модель существует
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\OrderInfo;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -52,16 +53,33 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $cartItems = session()->get('cart', []);
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())
+                ->with('product')
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    if (!$item->product) {
+                        \Log::warning('Product not found for cart item', ['product_id' => $item->product_id]);
+                        return [];
+                    }
+                    return [$item->product_id => [
+                        'name' => $item->product->name,
+                        'price' => $item->product->price,
+                        'quantity' => $item->quantity,
+                        'image' => $item->product->image1,
+                        'volume' => $item->product->volume,
+                    ]];
+                })->filter()->toArray();
+        } else {
+            $cartItems = session()->get('cart', []);
+        }
 
         if (empty($cartItems)) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
         }
 
         $subtotal = collect($cartItems)->sum(fn($item) => $item['price'] * $item['quantity']);
-
         $delivery = 12.00;
-
         $totalAmount = $subtotal + $delivery;
 
         return view('checkout', compact('cartItems', 'subtotal', 'delivery', 'totalAmount'));
@@ -69,19 +87,34 @@ class CheckoutController extends Controller
 
     public function checkout(Request $request)
     {
-        $subtotal = $request->input('subtotal');
-
-        $cartItems = session()->get('cart', []);
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())
+                ->with('product')
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    if (!$item->product) {
+                        \Log::warning('Product not found for cart item', ['product_id' => $item->product_id]);
+                        return [];
+                    }
+                    return [$item->product_id => [
+                        'name' => $item->product->name,
+                        'price' => $item->product->price,
+                        'quantity' => $item->quantity,
+                        'image' => $item->product->image1,
+                        'volume' => $item->product->volume,
+                    ]];
+                })->filter()->toArray();
+        } else {
+            $cartItems = session()->get('cart', []);
+        }
 
         if (empty($cartItems)) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
         }
 
-        $totalAmount = collect($cartItems)->sum(fn($item) => $item['price'] * $item['quantity']);
-
+        $subtotal = collect($cartItems)->sum(fn($item) => $item['price'] * $item['quantity']);
         $delivery = 12.00;
-
-        $totalAmount += $delivery;
+        $totalAmount = $subtotal + $delivery;
 
         return view('checkout', compact('cartItems', 'subtotal', 'delivery', 'totalAmount'));
     }
@@ -90,7 +123,27 @@ class CheckoutController extends Controller
     {
         \Log::info('Received order request with data:', $request->all());
 
-        $cart = session()->get('cart', []);
+        if (Auth::check()) {
+            $cart = Cart::where('user_id', Auth::id())
+                ->with('product')
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    if (!$item->product) {
+                        \Log::warning('Product not found for cart item', ['product_id' => $item->product_id]);
+                        return [];
+                    }
+                    return [$item->product_id => [
+                        'name' => $item->product->name,
+                        'price' => $item->product->price,
+                        'quantity' => $item->quantity,
+                        'image' => $item->product->image1,
+                        'volume' => $item->product->volume,
+                    ]];
+                })->filter()->toArray();
+        } else {
+            $cart = session()->get('cart', []);
+        }
+
         if (empty($cart)) {
             return response()->json(['success' => false, 'message' => 'Cart is empty']);
         }
@@ -112,8 +165,6 @@ class CheckoutController extends Controller
                 'created_at' => now()
             ]);
 
-            \Log::info('Created order:', $order->toArray());
-
             // Format phone number if phone code is provided
             $phone = $request->input('phone');
             if ($request->has('phone_code')) {
@@ -132,9 +183,6 @@ class CheckoutController extends Controller
                 'payment_method' => $request->input('payment_method')
             ]);
 
-            \Log::info('Created order info:', $orderInfo->toArray());
-
-            // Create order items
             foreach ($cart as $productId => $item) {
                 $orderItem = OrderItem::create([
                     'order_id' => $order->id,
@@ -142,11 +190,14 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                     'price' => number_format($item['price'], 2, '.', '')
                 ]);
-                \Log::info('Created order item:', $orderItem->toArray());
             }
 
             // Clear the cart
-            session()->forget('cart');
+            if (Auth::check()) {
+                Cart::where('user_id', Auth::id())->delete();
+            } else {
+                session()->forget('cart');
+            }
 
             DB::commit();
 
@@ -158,9 +209,7 @@ class CheckoutController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Error placing order: ' . $e->getMessage());
-            \Log::error($e->getTraceAsString());
-            
+
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred while placing your order: ' . $e->getMessage()
