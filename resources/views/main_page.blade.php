@@ -101,7 +101,7 @@
             <img src="https://i.pinimg.com/736x/f4/28/a8/f428a8f8fcda2f0f5247f43acf1dea16.jpg" class="pic4" alt="Perfume Test Background">
             <div class="text-overlay">
                 <p>Take a test to find the best perfume for you</p>
-                <a class="btn perfume-test-btn" href="{{ route('test') }}" >Take the Test</a>
+                <a class="btn perfume-test-btn" href="{{ route('quiz') }}" >Take the Test</a>
             </div>
         </div>
     </section>

@@ -171,7 +171,8 @@
             </button>
 
             <div class="collapse filters-mobile" id="filtersCollapse">
-                <div class="filter-container">
+                <form>
+                    <div class="filter-container">
                     <h5>SHOW FILTERS</h5>
                     <hr>
                     <table class="filter-table">
@@ -256,7 +257,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
+                    <button type="submit" class="btn btn-pink mt-3">Apply Filters</button>
                 </div>
                 </form>
             </div>

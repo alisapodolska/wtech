@@ -142,15 +142,17 @@
                 <input type="hidden" name="cart[{{ $id }}][image]" value="{{ $item['image'] }}">
                 <input type="hidden" name="cart[{{ $id }}][volume]" value="{{ isset($item['volume']) ? $item['volume'] : 'N/A' }}">
             @endforeach
+{{--            <div class="d-flex justify-content-between mb-5">--}}
+{{--                <button type="submit" class="btn btn-secondary custom-btn">Proceed to Checkout</button>--}}
+{{--            </div>--}}
+
+
             <div class="d-flex justify-content-between mb-5">
-                <button type="submit" class="btn btn-secondary custom-btn">Proceed to Checkout</button>
-            </div>
+            <a href="{{ route('catalog') }}" class="btn btn-outline-secondary">Continue Shopping</a>
+            <input type="hidden" name="subtotal" value="{{ number_format($subtotal, 2) }}">
+            <button type="submit" class="btn btn-secondary custom-btn">Checkout</button>
+            @csrf
         </form>
-        @csrf
-        <div class="d-flex justify-content-between mb-5">
-        <a href="{{ route('catalog') }}" class="btn btn-outline-secondary">Continue Shopping</a>
-        <input type="hidden" name="subtotal" value="{{ number_format($subtotal, 2) }}">
-{{--        <button type="submit" class="btn btn-secondary custom-btn">Checkout</button>--}}
         </div>
     </form>
     </div>

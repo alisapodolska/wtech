@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
@@ -43,9 +44,8 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])->nam
 
 Route::get('product/{id}', [ProductController::class, 'show'])->name('product-desc');
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
+Route::get('/quiz', [TestController::class, 'index'])->name('quiz');
+Route::post('/quiz/submit', [TestController::class, 'submit'])->name('quiz.submit');
 
 
 Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
