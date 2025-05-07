@@ -63,7 +63,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-Route::post('/checkout/confirm', [CheckoutController::class, 'confirmPayment'])->name('checkout.confirm');
+
 // Add logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

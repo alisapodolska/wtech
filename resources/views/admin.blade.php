@@ -21,17 +21,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ route('catalog') }}">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('search') }}">Search</a></li>
+                <li class="nav-item"><a class="nav-link" >Shop</a></li>
+                <li class="nav-item"><a class="nav-link" >About Us</a></li>
+                <li class="nav-item"><a class="nav-link" >Profile</a></li>
+                <li class="nav-item"><a class="nav-link" >Search</a></li>
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-link nav-link" style="color: inherit; text-decoration: none;">Logout</button>
                     </form>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">Bag</a></li>
+                <li class="nav-item"><a class="nav-link" >Bag</a></li>
             </ul>
         </div>
     </div>

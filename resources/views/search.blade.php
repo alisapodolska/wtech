@@ -88,11 +88,11 @@
                 Body Lotions
             </a>
         </li>
-        <li class="{{ request('type') == 'Castile Soaps' ? 'active' : '' }}">
-            <a href="{{ route('search', array_merge(request()->except('type'), ['type' => 'Castile Soaps'])) }}">
-                Castile Soaps
-            </a>
-        </li>
+{{--        <li class="{{ request('type') == 'Castile Soaps' ? 'active' : '' }}">--}}
+{{--            <a href="{{ route('search', array_merge(request()->except('type'), ['type' => 'Castile Soaps'])) }}">--}}
+{{--                Castile Soaps--}}
+{{--            </a>--}}
+{{--        </li>--}}
     </ul>
 </nav>
 
@@ -150,9 +150,21 @@
                     </table>
 
                     <div class="price-section mt-3">
-                        <h6>Price (€)</h6>
-                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
-                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
+                        <h6>Price Range (€)</h6>
+                        <div class="d-flex gap-3">
+                            <!-- Minimum Price Slider -->
+                            <div class="w-50">
+                                <label for="min_price">Min Price</label>
+                                <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
+                                <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                            </div>
+                            <!-- Maximum Price Slider -->
+                            <div class="w-50">
+                                <label for="max_price">Max Price</label>
+                                <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
+                                <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="volume-section mt-3">
@@ -187,81 +199,94 @@
             </button>
 
             <div class="collapse filters-mobile" id="filtersCollapse">
-                <div class="filter-container">
-                    <h5>SHOW FILTERS</h5>
-                    <hr>
-                    <table class="filter-table">
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
-                                            {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle lost-garden"></span> LOST GARDEN
-                                </label>
-                            </td>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
-                                            {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle woodland"></span> WOODLAND
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
-                                            {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle grassland"></span> GRASSLAND
-                                </label>
-                            </td>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
-                                            {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle herb-garden"></span> HERB GARDEN
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
-                                            {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
-                                </label>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </table>
+                <form>
+                    <div class="filter-container">
+                        <h5>SHOW FILTERS</h5>
+                        <hr>
+                        <table class="filter-table">
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
+                                                {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle lost-garden"></span> LOST GARDEN
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
+                                                {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle woodland"></span> WOODLAND
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
+                                                {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle grassland"></span> GRASSLAND
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
+                                                {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle herb-garden"></span> HERB GARDEN
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
+                                                {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
+                                    </label>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
 
-                    <div class="price-section mt-3">
-                        <h6>Price (€)</h6>
-                        <input type="range" class="form-range price-range" name="price" min="0" max="150" value="{{ request('price', 150) }}">
-                        <div class="text-end price-display">{{ request('price', 150) }}.00</div>
+                        <div class="price-section mt-3">
+                            <h6>Price Range (€)</h6>
+                            <div class="d-flex gap-3">
+                                <!-- Minimum Price Slider -->
+                                <div class="w-50">
+                                    <label for="min_price">Min Price</label>
+                                    <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
+                                    <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                                </div>
+                                <!-- Maximum Price Slider -->
+                                <div class="w-50">
+                                    <label for="max_price">Max Price</label>
+                                    <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
+                                    <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="volume-section mt-3">
+                            <h6>Volume (ml)</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
+                                        {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume30">30ml</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
+                                        {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume50">50ml</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
+                                        {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume100">100ml</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-pink mt-3">Apply Filters</button>
                     </div>
-
-                    <div class="volume-section mt-3">
-                        <h6>Volume (ml)</h6>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
-                                    {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume30">30ml</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
-                                    {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume50">50ml</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
-                                    {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume100">100ml</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
-                </div>
                 </form>
             </div>
 
@@ -273,8 +298,8 @@
                             Sort by Price
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <li><a class="dropdown-item {{ $sort == 'desc' ? 'active' : '' }}" href="{{ route('search', array_merge(request()->query(), ['sort' => 'asc'])) }}">Low to High</a></li>
-                            <li><a class="dropdown-item {{ $sort == 'asc' ? 'active' : '' }}" href="{{ route('search', array_merge(request()->query(), ['sort' => 'desc'])) }}">High to Low</a></li>
+                            <li><a class="dropdown-item {{ $sort == 'desc' ? 'active' : '' }}" href="{{ route('catalog', array_merge(request()->query(), ['sort' => 'asc'])) }}">Low to High</a></li>
+                            <li><a class="dropdown-item {{ $sort == 'asc' ? 'active' : '' }}" href="{{ route('catalog', array_merge(request()->query(), ['sort' => 'desc'])) }}">High to Low</a></li>
                         </ul>
                     </div>
                 </div>
@@ -382,6 +407,42 @@
     document.querySelectorAll('.price-range').forEach(slider => {
         slider.addEventListener('input', function() {
             this.nextElementSibling.textContent = this.value + '.00';
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const minPriceSlider = document.getElementById('min_price');
+        const maxPriceSlider = document.getElementById('max_price');
+        const minPriceDisplay = document.querySelector('.min-price-display');
+        const maxPriceDisplay = document.querySelector('.max-price-display');
+
+        // Update display when min price changes
+        minPriceSlider.addEventListener('input', function () {
+            let minValue = parseInt(this.value);
+            let maxValue = parseInt(maxPriceSlider.value);
+
+            // Prevent min price from exceeding max price
+            if (minValue > maxValue) {
+                minValue = maxValue;
+                this.value = minValue;
+            }
+
+            minPriceDisplay.textContent = minValue + '.00';
+        });
+
+        // Update display when max price changes
+        maxPriceSlider.addEventListener('input', function () {
+            let maxValue = parseInt(this.value);
+            let minValue = parseInt(minPriceSlider.value);
+
+            // Prevent max price from being less than min price
+            if (maxValue < minValue) {
+                maxValue = minValue;
+                this.value = maxValue;
+            }
+
+            maxPriceDisplay.textContent = maxValue + '.00';
         });
     });
 </script>
