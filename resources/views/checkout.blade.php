@@ -13,7 +13,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
-            <header class="logo">
+            <header class="logo sectarian">
                 <a class="navbar-brand" href="{{ route('main_page') }}">The Aroma UA</a>
             </header>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -88,7 +88,7 @@
                         </div>
                         @endforeach
 
-                        <div class="d-flex justify-content-between py-2">
+                        <div class="d-flex justify-content-between py-2" id="delivery-fee" style="display: none;">
                             <p class="mb-0">Delivery</p>
                             <p class="mb-0">12.00 €</p>
                         </div>
@@ -97,8 +97,28 @@
                             <h5 id="total-amount">{{ number_format($totalAmount, 2) }}€</h5>
                         </div>
                        
-                        <button class="btn btn-primary w-100 mt-3" id="place-order">Place Order</button>
+                        <button class="btn btn-primary w-100 mt-3" id="place-order" disabled>Confirm your information to place order</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Delivery Method Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3>Delivery Method</h3>
+                    <p class="text-muted">Select your delivery method</p>
+                    <div class="delivery-methods d-flex flex-wrap gap-3 mb-4">
+                        <button type="button" class="btn btn-outline-secondary delivery-btn" data-method="self_pickup">
+                            <span class="check-box"></span>
+                            Self Pickup
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary delivery-btn" data-method="courier">
+                            <span class="check-box"></span>
+                            By Courier
+                        </button>
+                    </div>
+                    <p id="courier-fee" class="text-muted" style="display: none;">+10 euro to courier</p>
+                    <input type="hidden" name="delivery_method" id="selected_delivery_method" value="">
                 </div>
             </div>
 
@@ -158,9 +178,6 @@
                         </div>
                     </div>
 
-                    <!-- Crypto fee text -->
-                    <p id="crypto-fee" class="text-muted" style="display: none;">+5 euro to curier</p>
-
                     <button class="btn btn-dark w-100 mt-3" type="submit" id="confirm-payment">Confirm Payment Method</button>
                 </div>
             </div>
@@ -197,14 +214,53 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const paymentButtons = document.querySelectorAll('.payment-btn');
+            const deliveryButtons = document.querySelectorAll('.delivery-btn');
             const cardDetails = document.querySelector('.card-details');
-            const cryptoFee = document.getElementById('crypto-fee');
+            const deliveryFee = document.getElementById('delivery-fee');
+            const courierFee = document.getElementById('courier-fee');
             const totalAmount = document.getElementById('total-amount');
             const placeOrderBtn = document.getElementById('place-order');
             const confirmPaymentBtn = document.getElementById('confirm-payment');
             const form = document.getElementById('checkout-form');
             let selectedMethod = null;
-            let baseTotal = {{ number_format($totalAmount, 2, '.', '') }};
+            let selectedDelivery = null;
+            let baseTotal = {{ $totalAmount }};
+
+            // Handle delivery method selection
+            deliveryButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const method = button.getAttribute('data-method');
+                    
+                    // Remove selected class from all buttons
+                    deliveryButtons.forEach(btn => btn.classList.remove('selected'));
+                    // Add selected class to clicked button
+                    button.classList.add('selected');
+                    selectedDelivery = method;
+                    
+                    // Update hidden input with selected delivery method
+                    document.getElementById('selected_delivery_method').value = method;
+                    
+                    // Show/hide delivery fee and courier fee label
+                    deliveryFee.style.display = method === 'courier' ? 'block' : 'none';
+                    courierFee.style.display = method === 'courier' ? 'block' : 'none';
+                    
+                    // Update total amount based on delivery method
+                    updateTotalAmount();
+                });
+            });
+
+            // Function to update total amount based on delivery method
+            function updateTotalAmount() {
+                let finalTotal = baseTotal;
+                
+                // Add delivery fee for courier
+                if (selectedDelivery === 'courier') {
+                    finalTotal += 10.00;
+                }
+                
+                totalAmount.textContent = `${finalTotal.toFixed(2)}€`;
+            }
 
             // Handle payment method selection
             paymentButtons.forEach(button => {
@@ -221,21 +277,34 @@
                     // Update hidden input with selected payment method
                     document.getElementById('selected_payment_method').value = method;
                     
-                    // Show/hide card details and crypto fee
+                    // Show/hide card details
                     if (method === 'card') {
                         cardDetails.style.display = 'block';
-                        cryptoFee.style.display = 'none';
-                        totalAmount.textContent = `${baseTotal.toFixed(2)}€`;
-                    } else if (method === 'after_delivery') {
-                        cardDetails.style.display = 'none';
-                        cryptoFee.style.display = 'block';
-                        totalAmount.textContent = `${(baseTotal + 5).toFixed(2)}€`;
                     } else {
                         cardDetails.style.display = 'none';
-                        cryptoFee.style.display = 'none';
-                        totalAmount.textContent = `${baseTotal.toFixed(2)}€`;
                     }
+                    
+                    updateTotalAmount();
                 });
+            });
+
+            // Handle confirm payment button click
+            confirmPaymentBtn.addEventListener('click', function(e) {
+                if (!selectedMethod) {
+                    e.preventDefault();
+                    alert('Please select a payment method');
+                    return;
+                }
+
+                if (!selectedDelivery) {
+                    e.preventDefault();
+                    alert('Please select a delivery method');
+                    return;
+                }
+
+                // Enable the Place Order button and update its text
+                placeOrderBtn.disabled = false;
+                placeOrderBtn.textContent = 'Place Order';
             });
 
             // Handle form submission
@@ -244,6 +313,11 @@
                 
                 if (!selectedMethod) {
                     alert('Please select a payment method');
+                    return;
+                }
+
+                if (!selectedDelivery) {
+                    alert('Please select a delivery method');
                     return;
                 }
 
@@ -281,6 +355,11 @@
                 
                 if (!selectedMethod) {
                     alert('Please select a payment method');
+                    return;
+                }
+
+                if (!selectedDelivery) {
+                    alert('Please select a delivery method');
                     return;
                 }
 

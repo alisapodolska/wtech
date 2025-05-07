@@ -130,6 +130,39 @@ body {
     color: #000;
 }
 
+/* Delivery method styles */
+.delivery-methods .delivery-btn {
+    border-radius: 0;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delivery-methods .delivery-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.delivery-methods .delivery-btn .check-box {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    position: relative;
+}
+
+.delivery-methods .delivery-btn.selected .check-box::after {
+    content: '\2713'; /* Unicode checkmark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #000;
+}
+
 .card-details .row {
     margin-left: 0;
     margin-right: 0;

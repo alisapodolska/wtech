@@ -180,7 +180,8 @@ class CheckoutController extends Controller
                 'country' => $request->input('country'),
                 'city' => $request->input('city'),
                 'address' => $request->input('address'),
-                'payment_method' => $request->input('payment_method')
+                'payment_method' => $request->input('payment_method'),
+                'delivery_method' => $request->input('delivery_method')
             ]);
 
             foreach ($cart as $productId => $item) {
