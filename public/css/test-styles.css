@@ -58,6 +58,7 @@ body {
 .test-container {
     margin-top: 75px; 
     padding: 20px;
+    align-content: center;
 }
 
 
@@ -112,6 +113,18 @@ body {
     background-color: #ff99cc; 
 }
 
+
+.btn-pink {
+    align-content: center;
+    background-color: #f4a7a7;
+    border-color: #f4a7a7;
+    color: #fff;
+    margin-left: 350px;
+}
+.btn-pink:hover {
+    background-color: #f4a7a7;
+    border-color: #f4a7a7;
+}
 
 .navigation {
     display: flex;

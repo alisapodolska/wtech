@@ -55,27 +55,27 @@
         <input type="hidden" name="answers" id="answersInput">
 
         <div class="question-section" id="question1">
-            <h2>What type of scent do you prefer?</h2>
+            <h2>If you could escape to your ideal place, where would it be?</h2>
             <div class="options">
                 <label class="option-label">
                     <input type="radio" name="question1" value="ATLANTIC COAST" required>
-                    <span>Atlantic Coast</span>
+                    <span>A windswept beach with salty ocean air</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="question1" value="LOST GARDEN">
-                    <span>Lost Garden</span>
+                    <span>A secret garden blooming with mysterious flowers</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="question1" value="GRASSLAND">
-                    <span>Grassland</span>
+                    <span>An endless meadow bathed in sunlight</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="question1" value="WOODLAND">
-                    <span>Woodland</span>
+                    <span>A serene forest with earthy, moss-covered paths</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="question1" value="HERB GARDEN">
-                    <span>Herb Garden</span>
+                    <span>An aromatic herb garden filled with fresh greenery</span>
                 </label>
             </div>
             @error('question1')
@@ -200,7 +200,7 @@
         </div>
 
         <div class="navigation">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-pink mt-3">Submit</button>
         </div>
     </form>
 </div>
