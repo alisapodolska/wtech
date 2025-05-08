@@ -12,7 +12,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <header class="logo">
-            <a class="navbar-brand" href="{{ route('main_page') }}">The Aroma UA</a>
+            @if (!auth()->check() || !auth()->user()->isAdmin())
+                <a class="navbar-brand" href="{{ route('main_page') }}">The Aroma UA</a>
+            @else
+                <a class="navbar-brand" >The Aroms UA</a>
+            @endif
         </header>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -20,11 +24,35 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ route('catalog') }}">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
+                <li class="nav-item">
+                    @if (!auth()->check() || !auth()->user()->isAdmin())
+                        <a class="nav-link" href="{{ route('about-us') }}">About Us</a>
+                    @else
+                        <a class="nav-link" >About Us</a>
+                    @endif
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('search') }}">Search</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">Bag</a></li>
+                <li class="nav-item">
+                    @if (!auth()->check() || !auth()->user()->isAdmin())
+                        <a class="nav-link" href="{{ route('search') }}">Search</a>
+                    @else
+                        <a class="nav-link" >Search</a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    @if (!auth()->check() || !auth()->user()->isAdmin())
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    @else
+                        <a class="nav-link" >Login</a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    @if (!auth()->check() || !auth()->user()->isAdmin())
+                        <a class="nav-link" href="{{ route('cart') }}">Bag</a>
+                    @else
+                        <a class="nav-link" >Bag</a>
+                    @endif
+                </li>
             </ul>
         </div>
     </div>
@@ -60,17 +88,12 @@
                 Body Lotions
             </a>
         </li>
-{{--        <li class="{{ request('type') == 'Castile Soap' ? 'active' : '' }}">--}}
-{{--            <a href="{{ route('catalog', array_merge(request()->except('type'), ['type' => 'Castile Soap'])) }}">--}}
-{{--                Castile Soaps--}}
-{{--            </a>--}}
-{{--        </li>--}}
     </ul>
 </nav>
 
 <div class="container-fluid">
     <div class="row">
-        
+
         <div class="col-lg-3 filter-sidebar">
             <form method="GET" action="{{ url()->current() }}">
                 <div class="filter-container">
@@ -163,9 +186,9 @@
             </form>
         </div>
 
-        
+
         <div class="col-lg-9">
-            
+
             <button class="btn btn-outline-secondary show-filters-btn" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
                 Show Filters
             </button>
@@ -173,92 +196,92 @@
             <div class="collapse filters-mobile" id="filtersCollapse">
                 <form>
                     <div class="filter-container">
-                    <h5>SHOW FILTERS</h5>
-                    <hr>
-                    <table class="filter-table">
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
-                                            {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle lost-garden"></span> LOST GARDEN
-                                </label>
-                            </td>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
-                                            {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle woodland"></span> WOODLAND
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
-                                            {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle grassland"></span> GRASSLAND
-                                </label>
-                            </td>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
-                                            {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle herb-garden"></span> HERB GARDEN
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="circle-checkbox">
-                                    <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
-                                            {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
-                                    <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
-                                </label>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </table>
+                        <h5>SHOW FILTERS</h5>
+                        <hr>
+                        <table class="filter-table">
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="LOST GARDEN" id="lost-garden"
+                                                {{ in_array('LOST GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle lost-garden"></span> LOST GARDEN
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="WOODLAND" id="woodland"
+                                                {{ in_array('WOODLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle woodland"></span> WOODLAND
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="GRASSLAND" id="grassland"
+                                                {{ in_array('GRASSLAND', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle grassland"></span> GRASSLAND
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="HERB GARDEN" id="herb-garden"
+                                                {{ in_array('HERB GARDEN', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle herb-garden"></span> HERB GARDEN
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="circle-checkbox">
+                                        <input type="checkbox" name="category[]" value="ATLANTIC COAST" id="atlantic-coast"
+                                                {{ in_array('ATLANTIC COAST', request()->input('category', [])) ? 'checked' : '' }}>
+                                        <span class="filter-circle atlantic-coast"></span> ATLANTIC COAST
+                                    </label>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
 
-                    <div class="price-section mt-3">
-                        <h6>Price Range (€)</h6>
-                        <div class="d-flex gap-3">
-                            <!-- Minimum Price Slider -->
-                            <div class="w-50">
-                                <label for="min_price">Min Price</label>
-                                <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
-                                <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                        <div class="price-section mt-3">
+                            <h6>Price Range (€)</h6>
+                            <div class="d-flex gap-3">
+                                <!-- Minimum Price Slider -->
+                                <div class="w-50">
+                                    <label for="min_price">Min Price</label>
+                                    <input type="range" class="form-range price-range" name="min_price" id="min_price" min="0" max="150" value="{{ request('min_price', 0) }}">
+                                    <div class="text-end min-price-display">{{ request('min_price', 0) }}.00</div>
+                                </div>
+                                <!-- Maximum Price Slider -->
+                                <div class="w-50">
+                                    <label for="max_price">Max Price</label>
+                                    <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
+                                    <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                                </div>
                             </div>
-                            <!-- Maximum Price Slider -->
-                            <div class="w-50">
-                                <label for="max_price">Max Price</label>
-                                <input type="range" class="form-range price-range" name="max_price" id="max_price" min="0" max="150" value="{{ request('max_price', 150) }}">
-                                <div class="text-end max-price-display">{{ request('max_price', 150) }}.00</div>
+                        </div>
+
+                        <div class="volume-section mt-3">
+                            <h6>Volume (ml)</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
+                                        {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume30">30ml</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
+                                        {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume50">50ml</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
+                                        {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="volume100">100ml</label>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="volume-section mt-3">
-                        <h6>Volume (ml)</h6>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="30" id="volume30"
-                                    {{ in_array('30', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume30">30ml</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="50" id="volume50"
-                                    {{ in_array('50', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume50">50ml</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="volume[]" value="100" id="volume100"
-                                    {{ in_array('100', request()->input('volume', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="volume100">100ml</label>
-                        </div>
+                        <button type="submit" class="btn btn-pink mt-3">Apply Filters</button>
                     </div>
-
-                    <button type="submit" class="btn btn-pink mt-3">Apply Filters</button>
-                </div>
                 </form>
             </div>
 
@@ -288,11 +311,13 @@
                                 <div class="product-price">€{{ $product->price }} / {{ $product->volume }}ml</div>
                                 <span class="price">{{ str_replace('€', '', $product->price) }}</span>
                             </div>
-                            <form method="POST" action="{{ route('cart.add', $product->id) }}" class="add-to-bag-form">
-                                @csrf
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="add-to-bag">Add to Bag</button>
-                            </form>
+                            @if (!auth()->check() || !auth()->user()->isAdmin())
+                                <form method="POST" action="{{ route('cart.add', $product->id) }}" class="add-to-bag-form">
+                                    @csrf
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="add-to-bag">Add to Bag</button>
+                                </form>
+                            @endif
                         </div>
                     @endforeach
                 </div>

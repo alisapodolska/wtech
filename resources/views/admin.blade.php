@@ -21,7 +21,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" >Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('catalog') }}">Shop</a></li>
                 <li class="nav-item"><a class="nav-link" >About Us</a></li>
                 <li class="nav-item"><a class="nav-link" >Profile</a></li>
                 <li class="nav-item"><a class="nav-link" >Search</a></li>
