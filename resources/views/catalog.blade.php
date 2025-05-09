@@ -302,9 +302,15 @@
                 <div class="row">
                     @foreach ($products as $product)
                         <div class="col-12 col-md-4 mb-3 product-item">
-                            <a href="{{ route('product-desc', ['id' => $product->id]) }}" class="product-link">
-                                <div class="product-image" style="background-image: url('{{ $product['image1'] }}');"></div>
-                            </a>
+                            @if (!auth()->check() || !auth()->user()->isAdmin())
+                                <a href="{{ route('product-desc', ['id' => $product->id]) }}" class="product-link">
+                                    <div class="product-image" style="background-image: url('{{ $product['image1'] }}');"></div>
+                                </a>
+                            @else
+                                <a class="product-link">
+                                    <div class="product-image" style="background-image: url('{{ $product['image1'] }}');"></div>
+                                </a>
+                            @endif
                             <div class="product-overlay">
                                 <div class="product-name">{{ $product->name }}</div>
                                 <div class="product-subtitle">{{ $product->type }}</div>
