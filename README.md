@@ -1,5 +1,8 @@
 # ﻿Perfume & Lotion E-Shop
-**Project Overview**
+
+
+## Project Overview
+
 This is a team project for the Introduction to Web Technologies class, developed by Plisko Uliana and Podolska Alisa. The project is an e-commerce website for selling perfumes and body lotions.
 
 **Features**
@@ -32,9 +35,11 @@ All product images and customer data are stored in a PostgreSQL database deploye
 Ensure the database connection is properly configured in the .env file.
 
 **Team**
+
 Plisko Uliana
 Podolska Alisa
 
 **License**
+
 This project is for educational purposes only and is not licensed for commercial use.
 
