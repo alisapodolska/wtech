@@ -150,10 +150,6 @@
                         <h3>Payment</h3>
                         <p class="text-muted">Select your payment method</p>
                         <div class="payment-methods d-flex flex-wrap gap-3 mb-4">
-                            <button type="button" class="btn btn-outline-secondary payment-btn" data-method="paypal">
-                                <span class="check-box"></span>
-                                PayPal
-                            </button>
                             <button type="button" class="btn btn-outline-secondary payment-btn" data-method="card">
                                 <span class="check-box"></span>
                                 Debit or credit card
